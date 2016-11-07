@@ -4,17 +4,58 @@
  * and open the template in the editor.
  */
 package core;
+
+import ij.ImagePlus;
+import ij.gui.HistogramWindow;
+import java.awt.Color;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 /**
  *
  * @author dodger
  */
-public class Main {
+public class Main extends JFrame {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public Main() {
+        super("My Frame");
+
+        //you can set the content pane of the frame
+        //to your custom class.
+        setContentPane(new DrawPane());
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        setSize(400, 400);
+
+        setVisible(true);
     }
-    
+
+    //create a component that you can actually draw on.
+    class DrawPane extends JPanel {
+
+        public void paintComponent(Graphics g) {
+//          
+            g.translate(0, 150);
+
+            try {
+                Processor.histogram(g, "src" + File.separatorChar + "image.jpg");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    public static void main(String args[]) {
+        new Main();
+
+    }
+
 }
