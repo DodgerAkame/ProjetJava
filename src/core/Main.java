@@ -23,6 +23,8 @@ import javax.swing.JPanel;
  */
 public class Main extends JFrame {
 
+    private Processor p = new Processor();
+
     public Main() {
         super("My Frame");
 
@@ -45,7 +47,10 @@ public class Main extends JFrame {
             g.translate(0, 150);
 
             try {
-                Processor.histogram(g, "src" + File.separatorChar + "image.jpg");
+                //p.histogram(g, "src" + File.separatorChar + "image.jpg");
+                //p.redhistogram(g, "src" + File.separatorChar + "image.jpg");
+                p.greenhistogram(g, "src" + File.separatorChar + "image.jpg");
+                //p.bluehistogram(g, "src" + File.separatorChar + "image.jpg");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -55,7 +60,6 @@ public class Main extends JFrame {
 
     public static void main(String args[]) {
         new Main();
-
     }
 
 }
