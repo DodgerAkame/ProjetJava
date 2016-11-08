@@ -6,6 +6,7 @@
 package core;
 
 import ij.ImagePlus;
+import ij.LookUpTable;
 import ij.gui.HistogramWindow;
 import ij.plugin.ChannelSplitter;
 import ij.plugin.filter.Convolver;
@@ -26,6 +27,8 @@ import javax.imageio.ImageIO;
  */
 public class Processor {
 
+    private boolean is8bitgray = false;
+
     public Processor() {
 
     }
@@ -35,8 +38,6 @@ public class Processor {
 
         HistogramWindow hw = new HistogramWindow(ip);
         int[] hip = hw.getHistogram();
-
-        System.out.println(hip.length);
 
         int max = 0;
 
@@ -48,7 +49,7 @@ public class Processor {
 
         }
 
-        Graphics2D g2d = (Graphics2D) g;
+        /*Graphics2D g2d = (Graphics2D) g;
         GradientPaint gp = new GradientPaint(30, 10, Color.white, hip.length, 0, Color.black);
 
         g2d.setPaint(gp);
@@ -56,99 +57,126 @@ public class Processor {
 
         GradientPaint gp2 = new GradientPaint(0, 0, Color.white, 10, -max / 100, Color.black);
         g2d.setPaint(gp2);
-        g2d.fillRect(10, -max / 100, 10, max / 100);
-
+        g2d.fillRect(10, -max / 100, 10, max / 100);*/
     }
 
     public void redhistogram(Graphics g, String path) throws IOException {
-        BufferedImage bi = ImageIO.read(new File(path));
-        int[] redhist = new int[256];
+        if (!is8bitgray) {
+            BufferedImage bi = ImageIO.read(new File(path));
+            int[] redhist = new int[256];
 
-        for (int i = 0; i < 256; i++) {
-            redhist[i] = 0;
-        }
-
-        for (int i = 0; i < bi.getWidth(); i++) {
-            for (int j = 0; j < bi.getHeight(); j++) {
-                int pixel = bi.getRGB(i, j);
-                int red = (pixel & 0x00ff0000) >> 16;
-                redhist[red] += 1;
+            for (int i = 0; i < 256; i++) {
+                redhist[i] = 0;
             }
-        }
 
-        for (int i = 0; i < 256; i++) {
-            g.drawLine(i, 0, i, -redhist[i] / 100);
+            for (int i = 0; i < bi.getWidth(); i++) {
+                for (int j = 0; j < bi.getHeight(); j++) {
+                    int pixel = bi.getRGB(i, j);
+                    int red = (pixel & 0x00ff0000) >> 16;
+                    redhist[red] += 1;
+                }
+            }
+
+            for (int i = 0; i < 256; i++) {
+                g.drawLine(i, 0, i, -redhist[i] / 100);
+            }
         }
 
     }
 
     public void greenhistogram(Graphics g, String path) throws IOException {
-        BufferedImage bi = ImageIO.read(new File(path));
-        int[] greenhist = new int[256];
+        if (!is8bitgray) {
+            BufferedImage bi = ImageIO.read(new File(path));
+            int[] greenhist = new int[256];
 
-        for (int i = 0; i < 256; i++) {
-            greenhist[i] = 0;
-        }
-
-        for (int i = 0; i < bi.getWidth(); i++) {
-            for (int j = 0; j < bi.getHeight(); j++) {
-                int pixel = bi.getRGB(i, j);
-                int green = (pixel & 0x0000ff00) >> 8;
-                greenhist[green] += 1;
+            for (int i = 0; i < 256; i++) {
+                greenhist[i] = 0;
             }
-        }
 
-        for (int i = 0; i < 256; i++) {
-            g.drawLine(i, 0, i, -greenhist[i] / 100);
+            for (int i = 0; i < bi.getWidth(); i++) {
+                for (int j = 0; j < bi.getHeight(); j++) {
+                    int pixel = bi.getRGB(i, j);
+                    int green = (pixel & 0x0000ff00) >> 8;
+                    greenhist[green] += 1;
+                }
+            }
+
+            for (int i = 0; i < 256; i++) {
+                g.drawLine(i, 0, i, -greenhist[i] / 100);
+            }
         }
 
     }
 
     public void bluehistogram(Graphics g, String path) throws IOException {
-        BufferedImage bi = ImageIO.read(new File(path));
-        int[] bluehist = new int[256];
+        if (!is8bitgray) {
+            BufferedImage bi = ImageIO.read(new File(path));
+            int[] bluehist = new int[256];
 
-        for (int i = 0; i < 256; i++) {
-            bluehist[i] = 0;
-        }
-
-        for (int i = 0; i < bi.getWidth(); i++) {
-            for (int j = 0; j < bi.getHeight(); j++) {
-                int pixel = bi.getRGB(i, j);
-                int blue = (pixel & 0x000000ff);
-                bluehist[blue] += 1;
+            for (int i = 0; i < 256; i++) {
+                bluehist[i] = 0;
             }
-        }
 
-        for (int i = 0; i < 256; i++) {
-            g.drawLine(i, 0, i, -bluehist[i] / 100);
-        }
+            for (int i = 0; i < bi.getWidth(); i++) {
+                for (int j = 0; j < bi.getHeight(); j++) {
+                    int pixel = bi.getRGB(i, j);
+                    int blue = (pixel & 0x000000ff);
+                    bluehist[blue] += 1;
+                }
+            }
 
+            for (int i = 0; i < 256; i++) {
+                g.drawLine(i, 0, i, -bluehist[i] / 100);
+            }
+
+        }
     }
 
     public void spiltRGB(Graphics g, String path, String channel) throws IOException {
-        ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
-        ImagePlus[] channels = ChannelSplitter.split(ip);
-        Image img;
-        if (channel.equals("RED")) {
-            img = channels[0].getImage();
-        } else if (channel.equals("GREEN")) {
-            img = channels[1].getImage();
-        } else {
-            img = channels[2].getImage();
+        if (!is8bitgray) {
+            ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
+            ImagePlus[] channels = ChannelSplitter.split(ip);
+            Image img;
+            if (channel.equals("RED")) {
+                img = channels[0].getImage();
+            } else if (channel.equals("GREEN")) {
+                img = channels[1].getImage();
+            } else {
+                img = channels[2].getImage();
+            }
+
+            g.drawImage(img, 0, 0, ip);
+        }
+    }
+
+    public void convolution3(Graphics g, String path, int[] matrix) throws IOException {
+        if (!is8bitgray) {
+            ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
+            ImageProcessor iproc = ip.getProcessor();
+
+            iproc.convolve3x3(matrix);
+            Image img = iproc.getBufferedImage();
+
+            g.drawImage(img, 0, 0, ip);
+        }
+    }
+
+    public void binarize(Graphics g, String path, int trigger) throws IOException {
+        if (!is8bitgray) {
+            is8bitgray = true;
+            if (trigger > 255 || trigger < 0) {
+                trigger = 127;
+            }
+
+            ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
+            ImageProcessor iproc = ip.getProcessor();
+            ImageProcessor grayproc = iproc.convertToByte(true);
+            grayproc.threshold(trigger);
+            Image binary = grayproc.getBufferedImage();
+
+            g.drawImage(binary, 0, 0, ip);
         }
 
-        g.drawImage(img, 0, 0, ip);
-    }
-    
-    public void convolution3(Graphics g, String path, int[] matrix) throws IOException{
-        ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
-        ImageProcessor iproc = ip.getProcessor();
-
-        iproc.convolve3x3(matrix);
-        Image img = iproc.getBufferedImage();
-        
-        g.drawImage(img, 0, 0, ip);
     }
 
 }
