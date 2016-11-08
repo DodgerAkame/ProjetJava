@@ -49,11 +49,14 @@ public class Main extends JFrame {
             try {
                 //p.histogram(g, "src" + File.separatorChar + "image.jpg");
                 //p.redhistogram(g, "src" + File.separatorChar + "image.jpg");
-                p.greenhistogram(g, "src" + File.separatorChar + "image.jpg");
+                //p.greenhistogram(g, "src" + File.separatorChar + "image.jpg");
                 //p.bluehistogram(g, "src" + File.separatorChar + "image.jpg");
+                p.spiltRGB(g, "src" + File.separatorChar + "image.jpg", "BLUE");
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            
+            g.dispose();
 
         }
     }

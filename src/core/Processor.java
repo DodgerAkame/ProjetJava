@@ -7,10 +7,12 @@ package core;
 
 import ij.ImagePlus;
 import ij.gui.HistogramWindow;
+import ij.plugin.ChannelSplitter;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -27,8 +29,7 @@ public class Processor {
     }
 
     public void histogram(Graphics g, String path) throws IOException {
-        ImagePlus ip = new ImagePlus();
-        ip = new ImagePlus("image", ImageIO.read(new File(path)));
+        ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
 
         HistogramWindow hw = new HistogramWindow(ip);
         int[] hip = hw.getHistogram();
@@ -55,7 +56,6 @@ public class Processor {
         g2d.setPaint(gp2);
         g2d.fillRect(10, -max / 100, 10, max / 100);
 
-        g.dispose();
     }
 
     public void redhistogram(Graphics g, String path) throws IOException {
@@ -122,6 +122,21 @@ public class Processor {
             g.drawLine(i, 0, i, -bluehist[i] / 100);
         }
 
+    }
+
+    public void spiltRGB(Graphics g, String path, String channel) throws IOException {
+        ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
+        ImagePlus[] channels = ChannelSplitter.split(ip);
+        Image img;
+        if (channel.equals("RED")) {
+            img = channels[0].getImage();
+        } else if (channel.equals("GREEN")) {
+            img = channels[1].getImage();
+        } else {
+            img = channels[2].getImage();
+        }
+
+        g.drawImage(img, 0, 0, ip);
     }
 
 }
