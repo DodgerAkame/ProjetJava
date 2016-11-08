@@ -51,11 +51,22 @@ public class Main extends JFrame {
                 //p.redhistogram(g, "src" + File.separatorChar + "image.jpg");
                 //p.greenhistogram(g, "src" + File.separatorChar + "image.jpg");
                 //p.bluehistogram(g, "src" + File.separatorChar + "image.jpg");
-                p.spiltRGB(g, "src" + File.separatorChar + "image.jpg", "BLUE");
+                //p.spiltRGB(g, "src" + File.separatorChar + "image.jpg", "BLUE");
+                int[] matrix = new int[9];
+                matrix[0] = -1;
+                matrix[1] = -1;
+                matrix[2] = -1;
+                matrix[3] = -1;
+                matrix[4] = 24;
+                matrix[5] = -1;
+                matrix[6] = -1;
+                matrix[7] = -1;
+                matrix[8] = -1;
+                p.convolution3(g, "src" + File.separatorChar + "image.jpg", matrix);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
+
             g.dispose();
 
         }

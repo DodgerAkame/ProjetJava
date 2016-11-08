@@ -8,6 +8,8 @@ package core;
 import ij.ImagePlus;
 import ij.gui.HistogramWindow;
 import ij.plugin.ChannelSplitter;
+import ij.plugin.filter.Convolver;
+import ij.process.ImageProcessor;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -136,6 +138,16 @@ public class Processor {
             img = channels[2].getImage();
         }
 
+        g.drawImage(img, 0, 0, ip);
+    }
+    
+    public void convolution3(Graphics g, String path, int[] matrix) throws IOException{
+        ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
+        ImageProcessor iproc = ip.getProcessor();
+
+        iproc.convolve3x3(matrix);
+        Image img = iproc.getBufferedImage();
+        
         g.drawImage(img, 0, 0, ip);
     }
 
