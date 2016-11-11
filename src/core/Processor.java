@@ -33,6 +33,12 @@ public class Processor {
 
     }
 
+    /**
+     * The function will use ImageJ's tool for histogram to draw one on the application's GUI
+     * @param g 
+     * @param path This'll be changed
+     * @throws IOException
+     */
     public void histogram(Graphics g, String path) throws IOException {
         ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
 
@@ -60,6 +66,12 @@ public class Processor {
         g2d.fillRect(10, -max / 100, 10, max / 100);*/
     }
 
+    /**
+     * This method will generate the red histogram in an int array to draw it when the histogram generation is done
+     * @param g
+     * @param path
+     * @throws IOException
+     */
     public void redhistogram(Graphics g, String path) throws IOException {
         if (!is8bitgray) {
             BufferedImage bi = ImageIO.read(new File(path));
@@ -84,6 +96,12 @@ public class Processor {
 
     }
 
+    /**
+     *This method will generate the green histogram in an int array to draw it when the histogram generation is done
+     * @param g
+     * @param path
+     * @throws IOException
+     */
     public void greenhistogram(Graphics g, String path) throws IOException {
         if (!is8bitgray) {
             BufferedImage bi = ImageIO.read(new File(path));
@@ -108,6 +126,12 @@ public class Processor {
 
     }
 
+    /**
+     * This method will generate the blue histogram in an int array to draw it when the histogram generation is done
+     * @param g
+     * @param path
+     * @throws IOException
+     */
     public void bluehistogram(Graphics g, String path) throws IOException {
         if (!is8bitgray) {
             BufferedImage bi = ImageIO.read(new File(path));
@@ -132,7 +156,14 @@ public class Processor {
         }
     }
 
-    public void spiltRGB(Graphics g, String path, String channel) throws IOException {
+    /**
+     * This method will extract the subchannel of the picture indicated with the argument channel, and display it in grayscale with ImageJ's splitter
+     * @param g
+     * @param path
+     * @param channel should be RED, GREEN or BLUE
+     * @throws IOException
+     */
+    public void splitRGB(Graphics g, String path, String channel) throws IOException {
         if (!is8bitgray) {
             ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
             ImagePlus[] channels = ChannelSplitter.split(ip);
@@ -149,6 +180,13 @@ public class Processor {
         }
     }
 
+    /**
+     * This method will apply a 3x3 convolution matrix on the picture with ImageJ's convolution tool
+     * @param g
+     * @param path
+     * @param matrix input type is like (1, 2, 3, 4, 5, 6, 7, 8, 9)
+     * @throws IOException
+     */
     public void convolution3(Graphics g, String path, int[] matrix) throws IOException {
         if (!is8bitgray) {
             ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
@@ -161,21 +199,28 @@ public class Processor {
         }
     }
 
+    /**
+     * This method will convert the picture in 8-bit grayscale if not done yet, and binarize the picture with ImageJ's method
+     * @param g
+     * @param path
+     * @param trigger has to be between 0 and 255 included. If not, will be reaffected to 127
+     * @throws IOException
+     */
     public void binarize(Graphics g, String path, int trigger) throws IOException {
         if (!is8bitgray) {
             is8bitgray = true;
-            if (trigger > 255 || trigger < 0) {
-                trigger = 127;
-            }
-
-            ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
-            ImageProcessor iproc = ip.getProcessor();
-            ImageProcessor grayproc = iproc.convertToByte(true);
-            grayproc.threshold(trigger);
-            Image binary = grayproc.getBufferedImage();
-
-            g.drawImage(binary, 0, 0, ip);
         }
+        if (trigger > 255 || trigger < 0) {
+            trigger = 127;
+        }
+
+        ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
+        ImageProcessor iproc = ip.getProcessor();
+        ImageProcessor grayproc = iproc.convertToByte(true);
+        grayproc.threshold(trigger);
+        Image binary = grayproc.getBufferedImage();
+
+        g.drawImage(binary, 0, 0, ip);
 
     }
 

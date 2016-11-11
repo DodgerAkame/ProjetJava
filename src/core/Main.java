@@ -48,7 +48,8 @@ public class Main extends JFrame {
 
             try {
                 //p.histogram(g, "src" + File.separatorChar + "image.jpg");
-                p.binarize(g, "src" + File.separatorChar + "image.jpg", 127);
+                //p.binarize(g, "src" + File.separatorChar + "image.jpg", 127);
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
