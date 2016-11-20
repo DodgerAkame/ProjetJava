@@ -5,11 +5,14 @@
  */
 package core;
 
+import fftprocess.FFT;
 import ij.ImagePlus;
 import ij.LookUpTable;
 import ij.gui.HistogramWindow;
 import ij.plugin.ChannelSplitter;
+
 import ij.plugin.filter.Convolver;
+import ij.process.FHT;
 import ij.process.ImageProcessor;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -34,8 +37,10 @@ public class Processor {
     }
 
     /**
-     * The function will use ImageJ's tool for histogram to draw one on the application's GUI
-     * @param g 
+     * The function will use ImageJ's tool for histogram to draw one on the
+     * application's GUI
+     *
+     * @param g
      * @param path This'll be changed
      * @throws IOException
      */
@@ -67,7 +72,9 @@ public class Processor {
     }
 
     /**
-     * This method will generate the red histogram in an int array to draw it when the histogram generation is done
+     * This method will generate the red histogram in an int array to draw it
+     * when the histogram generation is done
+     *
      * @param g
      * @param path
      * @throws IOException
@@ -97,7 +104,9 @@ public class Processor {
     }
 
     /**
-     *This method will generate the green histogram in an int array to draw it when the histogram generation is done
+     * This method will generate the green histogram in an int array to draw it
+     * when the histogram generation is done
+     *
      * @param g
      * @param path
      * @throws IOException
@@ -127,7 +136,9 @@ public class Processor {
     }
 
     /**
-     * This method will generate the blue histogram in an int array to draw it when the histogram generation is done
+     * This method will generate the blue histogram in an int array to draw it
+     * when the histogram generation is done
+     *
      * @param g
      * @param path
      * @throws IOException
@@ -157,7 +168,9 @@ public class Processor {
     }
 
     /**
-     * This method will extract the subchannel of the picture indicated with the argument channel, and display it in grayscale with ImageJ's splitter
+     * This method will extract the subchannel of the picture indicated with the
+     * argument channel, and display it in grayscale with ImageJ's splitter
+     *
      * @param g
      * @param path
      * @param channel should be RED, GREEN or BLUE
@@ -181,7 +194,9 @@ public class Processor {
     }
 
     /**
-     * This method will apply a 3x3 convolution matrix on the picture with ImageJ's convolution tool
+     * This method will apply a 3x3 convolution matrix on the picture with
+     * ImageJ's convolution tool
+     *
      * @param g
      * @param path
      * @param matrix input type is like (1, 2, 3, 4, 5, 6, 7, 8, 9)
@@ -200,10 +215,13 @@ public class Processor {
     }
 
     /**
-     * This method will convert the picture in 8-bit grayscale if not done yet, and binarize the picture with ImageJ's method
+     * This method will convert the picture in 8-bit grayscale if not done yet,
+     * and binarize the picture with ImageJ's method
+     *
      * @param g
      * @param path
-     * @param trigger has to be between 0 and 255 included. If not, will be reaffected to 127
+     * @param trigger has to be between 0 and 255 included. If not, will be
+     * reaffected to 127
      * @throws IOException
      */
     public void binarize(Graphics g, String path, int trigger) throws IOException {
@@ -224,4 +242,37 @@ public class Processor {
 
     }
 
+    public void doDFT(Graphics g, String path) throws IOException {
+
+        BufferedImage img = ImageIO.read(new File("src" + File.separatorChar + "image.jpg"));
+        int size = 2;
+        while (size < img.getHeight() && size < img.getWidth()) {
+            size = size * 2;
+        }
+        BufferedImage bi = new BufferedImage(size, size, BufferedImage.TYPE_BYTE_GRAY);
+        bi.getGraphics().drawImage(img, 0, 0, null);
+        int[] pixels = new int[bi.getHeight() * bi.getWidth()];
+        int counter = 0;
+        for (int i = 0; i < bi.getWidth(); i++) {
+            for (int j = 0; j < bi.getHeight(); j++) {
+                pixels[counter] = bi.getRGB(i, j);
+                counter++;
+            }
+        }
+
+        FFT fft = new FFT(pixels, bi.getWidth(), bi.getHeight());
+        int[] results = fft.getPixels();
+
+        BufferedImage fftimg = new BufferedImage(bi.getWidth(), bi.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
+
+        counter = 0;
+        for (int i = 0; i < fftimg.getWidth(); i++) {
+            for (int j = 0; j < fftimg.getHeight(); j++) {
+                fftimg.setRGB(i, j, results[counter]);
+                counter++;
+            }
+        }
+        
+        g.drawImage(fftimg, 0, 0, null);
+    }
 }

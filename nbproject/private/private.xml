@@ -5,6 +5,8 @@
         <group>
             <file>file:/home/dodger/NetBeansProjects/ProjetJava/src/core/Processor.java</file>
             <file>file:/home/dodger/NetBeansProjects/ProjetJava/src/core/Main.java</file>
+            <file>file:/home/dodger/NetBeansProjects/ProjetJava/src/imagej/ij/plugin/FFT.java</file>
+            <file>file:/home/dodger/NetBeansProjects/ProjetJava/src/imagej/ij/process/FHT.java</file>
         </group>
     </open-files>
 </project-private>

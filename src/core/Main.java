@@ -48,8 +48,11 @@ public class Main extends JFrame {
 
             try {
                 //p.histogram(g, "src" + File.separatorChar + "image.jpg");
+                //p.redhistogram(g, "src" + File.separatorChar + "image.jpg");
+               //p.splitRGB(g, "src" + File.separatorChar + "image.jpg","RED");
                 //p.binarize(g, "src" + File.separatorChar + "image.jpg", 127);
-                
+                p.doDFT(g, "src" + File.separatorChar + "image2.png");
+                System.out.println(0xffffff);
             } catch (Exception e) {
                 e.printStackTrace();
             }
