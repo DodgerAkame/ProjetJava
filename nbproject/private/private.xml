@@ -4,9 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/dodger/NetBeansProjects/ProjetJava/src/core/Processor.java</file>
+            <file>file:/home/dodger/NetBeansProjects/ProjetJava/src/fftprocess/InverseFFT.java</file>
             <file>file:/home/dodger/NetBeansProjects/ProjetJava/src/core/Main.java</file>
-            <file>file:/home/dodger/NetBeansProjects/ProjetJava/src/imagej/ij/plugin/FFT.java</file>
-            <file>file:/home/dodger/NetBeansProjects/ProjetJava/src/imagej/ij/process/FHT.java</file>
         </group>
     </open-files>
 </project-private>

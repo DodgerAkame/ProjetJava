@@ -6,6 +6,8 @@
 package core;
 
 import fftprocess.FFT;
+import fftprocess.InverseFFT;
+import fftprocess.TwoDArray;
 import ij.ImagePlus;
 import ij.LookUpTable;
 import ij.gui.HistogramWindow;
@@ -20,6 +22,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.awt.image.LookupOp;
+import java.awt.image.RescaleOp;
+import java.awt.image.ShortLookupTable;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -31,6 +37,7 @@ import javax.imageio.ImageIO;
 public class Processor {
 
     private boolean is8bitgray = false;
+    private boolean isFrequency = false;
 
     public Processor() {
 
@@ -80,7 +87,7 @@ public class Processor {
      * @throws IOException
      */
     public void redhistogram(Graphics g, String path) throws IOException {
-        if (!is8bitgray) {
+        if (!is8bitgray || !isFrequency) {
             BufferedImage bi = ImageIO.read(new File(path));
             int[] redhist = new int[256];
 
@@ -112,7 +119,7 @@ public class Processor {
      * @throws IOException
      */
     public void greenhistogram(Graphics g, String path) throws IOException {
-        if (!is8bitgray) {
+        if (!is8bitgray || !isFrequency) {
             BufferedImage bi = ImageIO.read(new File(path));
             int[] greenhist = new int[256];
 
@@ -144,7 +151,7 @@ public class Processor {
      * @throws IOException
      */
     public void bluehistogram(Graphics g, String path) throws IOException {
-        if (!is8bitgray) {
+        if (!is8bitgray || !isFrequency) {
             BufferedImage bi = ImageIO.read(new File(path));
             int[] bluehist = new int[256];
 
@@ -177,7 +184,7 @@ public class Processor {
      * @throws IOException
      */
     public void splitRGB(Graphics g, String path, String channel) throws IOException {
-        if (!is8bitgray) {
+        if (!is8bitgray || !isFrequency) {
             ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
             ImagePlus[] channels = ChannelSplitter.split(ip);
             Image img;
@@ -203,7 +210,7 @@ public class Processor {
      * @throws IOException
      */
     public void convolution3(Graphics g, String path, int[] matrix) throws IOException {
-        if (!is8bitgray) {
+        if (!is8bitgray && !isFrequency) {
             ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
             ImageProcessor iproc = ip.getProcessor();
 
@@ -225,7 +232,7 @@ public class Processor {
      * @throws IOException
      */
     public void binarize(Graphics g, String path, int trigger) throws IOException {
-        if (!is8bitgray) {
+        if (!is8bitgray || !isFrequency) {
             is8bitgray = true;
         }
         if (trigger > 255 || trigger < 0) {
@@ -272,7 +279,93 @@ public class Processor {
                 counter++;
             }
         }
-        
-        g.drawImage(fftimg, 0, 0, null);
+
+        g.drawImage(fftimg.getScaledInstance(512, 512, BufferedImage.SCALE_REPLICATE), 0, 0, null);
+        isFrequency = true;
     }
+
+    //TODO Problème ici
+    public void doIDFT(Graphics g, String path, int w, int h) throws IOException {
+        if (!isFrequency) {
+            BufferedImage bi = ImageIO.read(new File(path));
+            int[] pixels = new int[bi.getHeight() * bi.getWidth()];
+            int counter = 0;
+            for (int i = 0; i < bi.getWidth(); i++) {
+                for (int j = 0; j < bi.getHeight(); j++) {
+                    pixels[counter] = bi.getRGB(i, j);
+                    counter++;
+                }
+            }
+
+            TwoDArray tda = new TwoDArray(pixels, w, h);
+            InverseFFT ifft = new InverseFFT();
+            TwoDArray output = new TwoDArray();
+            output = ifft.transform(tda);
+            int[] outputInt = new int[bi.getHeight() * bi.getWidth()];
+            outputInt = ifft.getPixels(output);
+
+            BufferedImage result = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+            counter = 0;
+            for (int i = 0; i < result.getWidth(); i++) {
+                for (int j = 0; j < result.getHeight(); j++) {
+                    result.setRGB(i, j, outputInt[counter]);
+                    counter++;
+                }
+            }
+
+            g.drawImage(result, 0, 0, null);
+            isFrequency = false;
+        }
+    }
+
+    public void contrast(Graphics g, String path, String how) throws IOException {
+        if (!is8bitgray || !isFrequency) {
+
+            BufferedImage img = ImageIO.read(new File(path));
+            float contrastFactor = 0;
+            if (how.equals("plus")) {
+                contrastFactor = 15;
+            } else if (how.equals("minus")) {
+                contrastFactor = -15;
+            }
+
+            RescaleOp op = new RescaleOp(1f, contrastFactor, null);
+            img = op.filter(img, img);
+            g.drawImage(img, 0, 0, null);
+        }
+    }
+
+    public void brightness(Graphics g, String path, String how) throws IOException {
+        if (!is8bitgray || !isFrequency) {
+            BufferedImage img = ImageIO.read(new File(path));
+            float scaleFactor = 0;
+            if (how.equals("plus")) {
+                scaleFactor = 1.1f;
+            } else if (how.equals("minus")) {
+                scaleFactor = 0.9f;
+            }
+
+            RescaleOp op = new RescaleOp(scaleFactor, 0, null);
+            img = op.filter(img, img);
+            g.drawImage(img, 0, 0, null);
+        }
+
+    }
+
+    public void posterize(Graphics g, String path) throws IOException {
+        short[] posterize = new short[256];
+        for (int i = 0; i < 256; i++) {
+            posterize[i] = (short) (i - (i % 32));
+        }
+        BufferedImageOp posterizeOp
+                = new LookupOp(new ShortLookupTable(0, posterize), null);
+        BufferedImage bi = ImageIO.read(new File(path));
+        
+        BufferedImage result = new BufferedImage(bi.getWidth(), bi.getHeight(), BufferedImage.TYPE_INT_RGB);
+        result = posterizeOp.filter(bi, null);
+
+        g.drawImage(result, 0, 0, null);
+    }
+
+    //TODO regarder PDF pour fonctions restantes
 }

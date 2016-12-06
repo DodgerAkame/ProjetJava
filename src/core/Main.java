@@ -12,6 +12,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -44,19 +45,24 @@ public class Main extends JFrame {
 
         public void paintComponent(Graphics g) {
 //          
-            g.translate(0, 150);
+            g.translate(0, 10);
 
             try {
                 //p.histogram(g, "src" + File.separatorChar + "image.jpg");
                 //p.redhistogram(g, "src" + File.separatorChar + "image.jpg");
-               //p.splitRGB(g, "src" + File.separatorChar + "image.jpg","RED");
+                //p.splitRGB(g, "src" + File.separatorChar + "image.jpg","RED");
                 //p.binarize(g, "src" + File.separatorChar + "image.jpg", 127);
-                p.doDFT(g, "src" + File.separatorChar + "image2.png");
-                System.out.println(0xffffff);
+                //p.doDFT(g, "src" + File.separatorChar + "image.jpg");
+                //p.brightness(g, "src" + File.separatorChar + "image.jpg", "plus");
+                //p.contrast(g, "src" + File.separatorChar + "image.jpg", "plus");
+                //BufferedImage bi = ImageIO.read(new File("src" + File.separatorChar + "image.jpg"));
+                //p.doIDFT(g, "src" + File.separatorChar +"fft_image.jpg", bi.getWidth(), bi.getHeight());
+                p.posterize(g, "src" + File.separatorChar + "image.jpg");
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
+            System.out.println("Done.");
             g.dispose();
 
         }
