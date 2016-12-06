@@ -28,6 +28,7 @@ import java.awt.image.RescaleOp;
 import java.awt.image.ShortLookupTable;
 import java.io.File;
 import java.io.IOException;
+import javafx.scene.chart.BubbleChart;
 import javax.imageio.ImageIO;
 
 /**
@@ -352,19 +353,70 @@ public class Processor {
 
     }
 
-    public void posterize(Graphics g, String path) throws IOException {
-        short[] posterize = new short[256];
-        for (int i = 0; i < 256; i++) {
-            posterize[i] = (short) (i - (i % 32));
-        }
-        BufferedImageOp posterizeOp
-                = new LookupOp(new ShortLookupTable(0, posterize), null);
-        BufferedImage bi = ImageIO.read(new File(path));
-        
-        BufferedImage result = new BufferedImage(bi.getWidth(), bi.getHeight(), BufferedImage.TYPE_INT_RGB);
-        result = posterizeOp.filter(bi, null);
+    public void posterize(Graphics g, String path, int level) throws IOException {
 
-        g.drawImage(result, 0, 0, null);
+        BufferedImage bi = ImageIO.read(new File(path));
+
+        int[] pixels = new int[bi.getHeight() * bi.getWidth()];
+        int counter = 0;
+        for (int i = 0; i < bi.getWidth(); i++) {
+            for (int j = 0; j < bi.getHeight(); j++) {
+                pixels[counter] = bi.getRGB(i, j);
+                counter++;
+            }
+        }
+
+        int[] levels = new int[level + 1];
+        int reste = 255 % level;
+        for (int i = 0; i < level; i++) {
+            levels[i] = (i + 1) * ((255 - reste) / level);
+        }
+        levels[level] = 255;
+
+        for (int i = 0; i < pixels.length; i++) {
+            int pixel = pixels[i];
+            int red = (pixel & 0x00ff0000) >> 16;
+            int green = (pixel & 0x0000ff00) >> 8;
+            int blue = (pixel & 0x000000ff);
+
+            boolean redChanged = false;
+            boolean greenChanged = false;
+            boolean blueChanged = false;
+            for (int j = 0; j < level; j++) {
+                if (red < levels[j] && !redChanged) {
+                    red = (int) Math.floor(levels[j] / 2);
+                    redChanged = true;
+                }
+                if (green < levels[j] && !greenChanged) {
+                    green = (int) Math.floor(levels[j] / 2);
+                    greenChanged = true;
+                }
+                if (blue < levels[j] && !blueChanged) {
+                    blue = (int) Math.floor(levels[j] / 2);
+                    blueChanged = true;
+                }
+
+                if (redChanged && greenChanged && blueChanged) {
+                    break;
+                }
+            }
+
+            pixel = (0xff000000 | red << 16 | green << 8 | blue);
+            pixels[i] = pixel;
+
+        }
+
+        counter = 0;
+        BufferedImage img = new BufferedImage(bi.getWidth(), bi.getHeight(), bi.getType());
+        for (int i = 0; i < bi.getWidth(); i++) {
+            for (int j = 0; j < bi.getHeight(); j++) {
+                img.setRGB(i, j, pixels[counter]);
+                counter++;
+            }
+        }
+
+        System.out.println("J'ai fini");
+        g.drawImage(img, 0, 0, null);
     }
 
     //TODO regarder PDF pour fonctions restantes
