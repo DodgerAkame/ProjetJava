@@ -28,7 +28,10 @@ import java.awt.image.RescaleOp;
 import java.awt.image.ShortLookupTable;
 import java.io.File;
 import java.io.IOException;
+<<<<<<< HEAD
 import javafx.scene.chart.BubbleChart;
+=======
+>>>>>>> master
 import javax.imageio.ImageIO;
 
 /**
@@ -353,6 +356,7 @@ public class Processor {
 
     }
 
+<<<<<<< HEAD
     public void posterize(Graphics g, String path, int level) throws IOException {
 
         BufferedImage bi = ImageIO.read(new File(path));
@@ -417,6 +421,21 @@ public class Processor {
 
         System.out.println("J'ai fini");
         g.drawImage(img, 0, 0, null);
+=======
+    public void posterize(Graphics g, String path) throws IOException {
+        short[] posterize = new short[256];
+        for (int i = 0; i < 256; i++) {
+            posterize[i] = (short) (i - (i % 32));
+        }
+        BufferedImageOp posterizeOp
+                = new LookupOp(new ShortLookupTable(0, posterize), null);
+        BufferedImage bi = ImageIO.read(new File(path));
+        
+        BufferedImage result = new BufferedImage(bi.getWidth(), bi.getHeight(), BufferedImage.TYPE_INT_RGB);
+        result = posterizeOp.filter(bi, null);
+
+        g.drawImage(result, 0, 0, null);
+>>>>>>> master
     }
 
     //TODO regarder PDF pour fonctions restantes

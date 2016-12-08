@@ -57,12 +57,20 @@ public class Main extends JFrame {
                 //p.contrast(g, "src" + File.separatorChar + "image.jpg", "plus");
                 //BufferedImage bi = ImageIO.read(new File("src" + File.separatorChar + "image.jpg"));
                 //p.doIDFT(g, "src" + File.separatorChar +"fft_image.jpg", bi.getWidth(), bi.getHeight());
+<<<<<<< HEAD
                 p.posterize(g, "src" + File.separatorChar + "image.jpg", 5);
+=======
+                p.posterize(g, "src" + File.separatorChar + "image.jpg");
+>>>>>>> master
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
+<<<<<<< HEAD
            
+=======
+            System.out.println("Done.");
+>>>>>>> master
             g.dispose();
 
         }
