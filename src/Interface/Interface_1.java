@@ -110,11 +110,13 @@ public class Interface_1 extends javax.swing.JFrame {
 
     private void splitRGBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_splitRGBMouseClicked
 fonction = "splitRGB";
-core.Processor popo = new core.Processor();
-process = popo;
-System.out.println(process.getImage().size());
+Tampon t = new Tampon();
+t.setAdr(dropPane1.getAdresse());
+t.setName(fonction);
+t.setA(dropPane1.getAa());
+t.setB(dropPane1.getBb());
 System.out.println(fonction);
-Interface_test g=new Interface_test();
+Itest g=new Itest();
 g.setVisible(true); 
     }//GEN-LAST:event_splitRGBMouseClicked
 

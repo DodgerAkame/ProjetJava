@@ -6,6 +6,7 @@
 package core;
 
 import Interface.Interface_1;
+import Interface.Tampon;
 import fftprocess.FFT;
 import fftprocess.InverseFFT;
 import fftprocess.TwoDArray;
@@ -48,21 +49,17 @@ public class Processor extends JPanel {
     }
 
   
-    public Processor(){
+    public Processor() throws IOException{
          message = new JLabel();
-         Interface_1 I1 = new Interface_1();
-         ArrayList<String> adr = I1.getDropPane1().getAdresse();
-         ArrayList<ImageIcon> img = new ArrayList<ImageIcon>();
-         ImageIcon i = new ImageIcon();
-         String name = I1.getFonction();
-        try {
-            img = evaluate(adr,name);
-            image=img;
-            //paint(I1.getDropPane1().getAa(),I1.getDropPane1().getBb(),img);
-            System.out.println("j'ai fini le paint des "+img.size()+" éléments");
-        } catch (IOException ex) {
-            Logger.getLogger(Processor.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         Tampon t = new Tampon();
+         String name = t.getName();
+         ArrayList<String> adr = t.getAdr();
+            image = evaluate(adr,name);
+            paint(t.getA(),t.getB(),image);
+            revalidate();
+            repaint();
+            System.out.println("j'ai fini le paint des "+image.size()+" éléments");
+
     }
       @Override
     public Dimension getPreferredSize() {
