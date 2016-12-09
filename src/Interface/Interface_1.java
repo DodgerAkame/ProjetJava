@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import core.Processor;
 import java.util.ArrayList;
 
 /**
@@ -32,7 +33,7 @@ public class Interface_1 extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         dropPane1 = new Interface.DropPane();
         jPanel1 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        splitRGB = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,10 +65,10 @@ public class Interface_1 extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        jToggleButton1.setText("jToggleButton1");
-        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        splitRGB.setText("jToggleButton1");
+        splitRGB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jToggleButton1MouseClicked(evt);
+                splitRGBMouseClicked(evt);
             }
         });
 
@@ -76,14 +77,14 @@ public class Interface_1 extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jToggleButton1)
+                .addComponent(splitRGB)
                 .addGap(0, 233, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jToggleButton1)
+                .addComponent(splitRGB)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -107,11 +108,15 @@ public class Interface_1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
-        
+    private void splitRGBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_splitRGBMouseClicked
+fonction = "splitRGB";
+core.Processor popo = new core.Processor();
+process = popo;
+System.out.println(process.getImage().size());
+System.out.println(fonction);
 Interface_test g=new Interface_test();
 g.setVisible(true); 
-    }//GEN-LAST:event_jToggleButton1MouseClicked
+    }//GEN-LAST:event_splitRGBMouseClicked
 
     /**
      * @param args the command line arguments
@@ -153,10 +158,21 @@ g.setVisible(true);
     }
     
 
+
+    public String getFonction() {
+        return fonction;
+    }
+
+
+    public Processor getProcess() {
+        return process;
+    }
+    private core.Processor process;
+    private String fonction = "";
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Interface.DropPane dropPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton splitRGB;
     // End of variables declaration//GEN-END:variables
 }
