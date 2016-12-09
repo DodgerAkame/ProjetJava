@@ -17,6 +17,7 @@ import ij.plugin.filter.Convolver;
 import ij.process.FHT;
 import ij.process.ImageProcessor;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -29,19 +30,32 @@ import java.awt.image.ShortLookupTable;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
  * @author dodger
  */
-public class Processor {
+
+
+public class Processor extends JPanel {
 
     private boolean is8bitgray = false;
     private boolean isFrequency = false;
+    private JLabel message;
 
+  
     public Processor() {
-
+         message = new JLabel();
     }
+    
+  @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(500, 350); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
     /**
      * The function will use ImageJ's tool for histogram to draw one on the
@@ -369,3 +383,4 @@ public class Processor {
 
     //TODO regarder PDF pour fonctions restantes
 }
+

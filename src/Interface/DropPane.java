@@ -64,10 +64,13 @@ public class DropPane extends JPanel {
         private static int Size = 0;
         private static ArrayList<String> adresse = new ArrayList<String>();
 
-    public static ArrayList<String> getAdresse() {
-        return adresse;
-    }
 
+ /**
+     * constructor, 
+     * 
+     *
+     
+     */
         public DropPane() {
             bubu = new javax.swing.JButton();
             message = new JLabel();
@@ -87,19 +90,34 @@ public class DropPane extends JPanel {
 //                importFiles(adresse);
                 System.out.println(bubu.getName());
     }
-
+            
+             /**
+     * getter from var adresse
+     */
+        public static ArrayList<String> getAdresse() {
+            return adresse;
+        }
+         /**
+     * define the size of the frame of this class
+     */
         @Override
         public Dimension getPreferredSize() {
             return new Dimension(500, 350);
         }
-
+ /**
+     * getter droptarget
+     * if drop target is null : instance of droptarget
+     */
         protected DropTarget getMyDropTarget() {
             if (dropTarget == null) {
                 dropTarget = new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, null);
             }
             return dropTarget;
         }
-
+ /**
+     * getter dropTargetHandler
+     * if dropTargetHandler is null : instance of dropTargetHandler
+     */
         protected DropTargetHandler getDropTargetHandler() {
             if (dropTargetHandler == null) {
                 dropTargetHandler = new DropTargetHandler();
@@ -122,7 +140,10 @@ public class DropPane extends JPanel {
             super.removeNotify();
             getMyDropTarget().removeDropTargetListener(getDropTargetHandler());
         }
-
+ /**
+     * create a frame with pink color when a drag is coming
+     * @param g
+     */
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -140,7 +161,10 @@ public class DropPane extends JPanel {
         }
         
 
-        
+ /**
+     * execution of calcul and analisys of the drop selection
+     * @param files
+     */        
         protected void importFiles(final List files) {
             Runnable run = new Runnable() {
                 @Override
@@ -153,14 +177,15 @@ public class DropPane extends JPanel {
                     System.out.println("adresse : " +adresse.size());
                     revalidate();
                 }
-
-                
-
-              
+ 
             };
             SwingUtilities.invokeLater(run);
         }
         
+ /**
+     * create a list with all path include in the drop files
+     * @param files
+     */        
         private ArrayList<String> ListImage(List files) {
              ListImage img = new ListImage(files);
              ArrayList<String> image;
@@ -170,6 +195,11 @@ public class DropPane extends JPanel {
              image = adresse;
             return image;
                 }
+        
+ /**
+     * create a list of ImageIcon resizes and define a limit of memory use for images (500 Mbytes)
+     * @param img
+     */
         private ArrayList<ImageIcon> list(ArrayList<String> img) {
             
             ArrayList<ImageIcon> image = new ArrayList<>();
@@ -193,6 +223,10 @@ public class DropPane extends JPanel {
                     }
                    return image;
         }
+ /**
+     * define and calcul the var aa and bb and update size 
+     * @param size
+     */
          private ArrayList<Integer> calcul(int size) {
              
              int sizef = sizeI + size;
@@ -217,6 +251,13 @@ public class DropPane extends JPanel {
                    calcul.add(bb);System.out.println(sizeI);
                    return calcul;
         }
+         
+ /**
+     * create a grid and paint the List of ImageIcon
+     * @param img
+     * @param a
+     * @param b
+     */
           public void paint(int a, int b, ArrayList<ImageIcon> img) {
                 setLayout(new GridLayout(b,a,0,0));
                 int ie =0;
