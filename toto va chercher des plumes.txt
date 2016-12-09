@@ -1,0 +1,16 @@
+image en entré un tableau d'entier representant les pixel
+	créer une nouvelle class juste avec une application genre binarizer
+
+il y a un problème avec la classe processor et les exception, la dessus j'en suis certain.
+il faut tester diverse methode pour arriver a le faire lire par la Jframe
+
+pour intégré une classe a une JFrame il faut tout d''abort : extends JPanel
+ensuite définir le panel avec 
+   @Override
+    public Dimension getPreferredSize() {
+         return new Dimension(500, 350); //To change body of generated methods, choose Tools | Templates.
+    }
+qui se trouve dans l'avant dernier (normalement) dossier lors de la sélection de la génération de code "ovewrite"
+
+ 
+les classes sont deja préremplie, Itest est la pour la frame de test, et Tampon possède les getter et les setter de la liste des Url et du type de méthode
