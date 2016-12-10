@@ -23,7 +23,7 @@ public class Tampon extends JPanel{
     private String name;
     private int a,b;
 
-    public Tampon() throws IOException {
+    public Tampon(){
                }
      @Override
     public Dimension getPreferredSize() {

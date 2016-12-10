@@ -31,19 +31,37 @@ public class Itest extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tampon1 = new Interface.Tampon();
+      
+            tampon1 = new Interface.Tampon();
+      
+        dropPane1 = new Interface.DropPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout dropPane1Layout = new javax.swing.GroupLayout(dropPane1);
+        dropPane1.setLayout(dropPane1Layout);
+        dropPane1Layout.setHorizontalGroup(
+            dropPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+        dropPane1Layout.setVerticalGroup(
+            dropPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout tampon1Layout = new javax.swing.GroupLayout(tampon1);
         tampon1.setLayout(tampon1Layout);
         tampon1Layout.setHorizontalGroup(
             tampon1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tampon1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(dropPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         tampon1Layout.setVerticalGroup(
             tampon1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tampon1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(dropPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -100,6 +118,7 @@ public class Itest extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Interface.DropPane dropPane1;
     private Interface.Tampon tampon1;
     // End of variables declaration//GEN-END:variables
 }
