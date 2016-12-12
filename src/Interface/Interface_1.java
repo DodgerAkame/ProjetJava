@@ -33,7 +33,12 @@ public class Interface_1 extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         dropPane1 = new Interface.DropPane();
         jPanel1 = new javax.swing.JPanel();
-        splitRGB = new javax.swing.JToggleButton();
+        convolution = new javax.swing.JToggleButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,10 +70,50 @@ public class Interface_1 extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        splitRGB.setText("jToggleButton1");
-        splitRGB.addMouseListener(new java.awt.event.MouseAdapter() {
+        convolution.setText("convolution");
+        convolution.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                splitRGBMouseClicked(evt);
+                convolutionMouseClicked(evt);
+            }
+        });
+        convolution.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                convolutionActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("splitRGB");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        jButton2.setText("binarize");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        jButton3.setText("doDFT");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
+        jButton4.setText("doIDFT");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
+        jButton5.setText("posterize");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
             }
         });
 
@@ -77,14 +122,30 @@ public class Interface_1 extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(splitRGB)
-                .addGap(0, 233, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(convolution)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
+                .addGap(0, 251, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(splitRGB)
+                .addComponent(convolution)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -102,23 +163,71 @@ public class Interface_1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void splitRGBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_splitRGBMouseClicked
-fonction = "splitRGB";
+    private void convolutionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_convolutionMouseClicked
+fonction = "convolution3";
+        dropPane1.setEffect(fonction);
+        System.out.println("name in dropPane :" + dropPane1.getEffect());
 Tampon t = new Tampon();
-t.setAdr(dropPane1.getAdresse());
-t.setName(fonction);
-t.setA(dropPane1.getAa());
-t.setB(dropPane1.getBb());
-System.out.println(fonction);
 Itest g=new Itest();
 g.setVisible(true); 
-    }//GEN-LAST:event_splitRGBMouseClicked
+    }//GEN-LAST:event_convolutionMouseClicked
+
+    private void convolutionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convolutionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_convolutionActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+      fonction = "splitRGB";
+        dropPane1.setEffect(fonction);
+        System.out.println("name in dropPane :" + dropPane1.getEffect());
+Tampon t = new Tampon();
+Itest g=new Itest();
+g.setVisible(true); 
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+      fonction = "binarize";
+        dropPane1.setEffect(fonction);
+        System.out.println("name in dropPane :" + dropPane1.getEffect());
+Tampon t = new Tampon();
+Itest g=new Itest();
+g.setVisible(true); 
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+             fonction = "doDFT";
+        dropPane1.setEffect(fonction);
+        System.out.println("name in dropPane :" + dropPane1.getEffect());
+Tampon t = new Tampon();
+Itest g=new Itest();
+g.setVisible(true); 
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+             fonction = "doIDFT";
+        dropPane1.setEffect(fonction);
+        System.out.println("name in dropPane :" + dropPane1.getEffect());
+Tampon t = new Tampon();
+Itest g=new Itest();
+g.setVisible(true); 
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+             fonction = "posterize";
+        dropPane1.setEffect(fonction);
+        System.out.println("name in dropPane :" + dropPane1.getEffect());
+Tampon t = new Tampon();
+Itest g=new Itest();
+g.setVisible(true);         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -170,11 +279,16 @@ g.setVisible(true);
         return process;
     }
     private core.Processor process;
-    private String fonction = "";
+    protected String fonction;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton convolution;
     private Interface.DropPane dropPane1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JToggleButton splitRGB;
     // End of variables declaration//GEN-END:variables
 }

@@ -28,6 +28,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -48,19 +49,19 @@ public class Processor extends JPanel {
 
     public Processor(){
         message = new JLabel();
-        Tampon t = new Tampon();
-        String name = t.getName();
-        ArrayList<String> adr = t.getAdr();
-        try {
-            image = evaluate(adr, name);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        paint(t.getA(), t.getB(), image);
-        revalidate();
-        repaint();
-        System.out.println("j'ai fini le paint des " + image.size() + " éléments");
+//        Tampon t = new Tampon();
+//        String name = t.getName();
+//        ArrayList<String> adr = t.getAdr();
+//        try {
+//            image = evaluate(adr, name);
+//        }
+//        catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        paint(t.getA(), t.getB(), image);
+//        revalidate();
+//        repaint();
+//        System.out.println("j'ai fini le paint des " + image.size() + " éléments");
 
     }
 
@@ -69,36 +70,71 @@ public class Processor extends JPanel {
         return new Dimension(500, 350); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public ArrayList<ImageIcon> evaluate(ArrayList<String> adr, String name) throws IOException {
-        ArrayList<ImageIcon> eval = new ArrayList<ImageIcon>();
-        ImageIcon i = new ImageIcon();
-        for (int j = 0; j < adr.size(); j++) {
-            switch (name) {
+    public ArrayList<ImageIcon> evaluate(int a, int b ,ArrayList<String> adr, String name) throws IOException {
+//        ArrayList<ImageIcon> eval = new ArrayList<ImageIcon>();
+//        System.out.println(name);
+//        ImageIcon i = new ImageIcon();
+//        for (int j = 0; j < adr.size(); j++) {
+//            
+//            switch (name) {
+//                case "splitRGB":
+//                    i = splitRGB(adr.get(j), "RED");
+//                    break;
+//                case "convolution3":
+//                    int toto[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+//                    i = convolution3(adr.get(j), toto);
+//                    break;
+//                case "binarize":
+//                    i = binarize(adr.get(j), 127);
+//                    break;
+//                case "doDFT":
+//                    i = doDFT(adr.get(j));
+//                    break;
+//                case "doIDFT":
+//                    i = doIDFT(adr.get(j), 5, 5);
+//                    break;
+//                case "posterize":
+//                    i = posterize(adr.get(j), 127);
+//                    break;                          
+//            }
+//             
+//            eval.add(i);
+//        }
+//        return eval;
+             
+            ArrayList<ImageIcon> image = new ArrayList<>();
+
+                   for(int j =0; j< adr.size(); j++){
+                       
+                        ImageIcon _icon = new ImageIcon(new ImageIcon(adr.get(j)).getImage().getScaledInstance(1024/10, 1024/10, Image.SCALE_FAST));
+                switch (name) {
                 case "splitRGB":
-                    i = splitRGB(adr.get(j), "RED");
+                    _icon = splitRGB(adr.get(j), "RED");
                     break;
                 case "convolution3":
                     int toto[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-                    i = convolution3(adr.get(j), toto);
+                    _icon = convolution3(adr.get(j), toto);
                     break;
                 case "binarize":
-                    i = binarize(adr.get(j), 127);
+                    _icon = binarize(adr.get(j), 127);
                     break;
                 case "doDFT":
-                    i = doDFT(adr.get(j));
+                    _icon = doDFT(adr.get(j));
                     break;
                 case "doIDFT":
-                    i = doIDFT(adr.get(j), 5, 5);
+                    _icon = doIDFT(adr.get(j), 5, 5);
                     break;
                 case "posterize":
-                    i = posterize(adr.get(j), 127);
-                    break;
-
+                    _icon = posterize(adr.get(j), 127);
+                    break;                          
             }
-            eval.add(i);
+                ImageIcon _icon2 = new ImageIcon(new ImageIcon(_icon.getImage()).getImage().getScaledInstance(1024/10, 1024/10, Image.SCALE_FAST));
+                       image.add(_icon2);
+                       
+                    }
+                   return image;
         }
-        return eval;
-    }
+    
 
     public void paint(int a, int b, ArrayList<ImageIcon> img) {
         setLayout(new GridLayout(b, a, 0, 0));
@@ -111,6 +147,8 @@ public class Processor extends JPanel {
             //toto.add(bubu);
             add(bubu);
         }
+        revalidate();
+        repaint();
 
     }
 

@@ -59,6 +59,15 @@ public class DropPane extends JPanel {
         private JLabel message;  
         private javax.swing.JButton bubu;
         private static int aa = 0;
+        private static String effect;
+
+    public static String getEffect() {
+        return effect;
+    }
+
+    public void setEffect(String effect) {
+        this.effect = effect;
+    }
 
     public static int getAa() {
         return aa;
