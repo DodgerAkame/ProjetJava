@@ -106,7 +106,7 @@ public class Processor extends JPanel {
 
                    for(int j =0; j< adr.size(); j++){
                        
-                        ImageIcon _icon = new ImageIcon(new ImageIcon(adr.get(j)).getImage().getScaledInstance(1024/10, 1024/10, Image.SCALE_FAST));
+                        ImageIcon _icon = new ImageIcon(new ImageIcon(adr.get(j)).getImage().getScaledInstance(1024/a, 1024/b, Image.SCALE_FAST));
                 switch (name) {
                 case "splitRGB":
                     _icon = splitRGB(adr.get(j), "RED");
@@ -128,7 +128,7 @@ public class Processor extends JPanel {
                     _icon = posterize(adr.get(j), 127);
                     break;                          
             }
-                ImageIcon _icon2 = new ImageIcon(new ImageIcon(_icon.getImage()).getImage().getScaledInstance(1024/10, 1024/10, Image.SCALE_FAST));
+                ImageIcon _icon2 = new ImageIcon(new ImageIcon(_icon.getImage()).getImage().getScaledInstance(1024/a, 1024/b, Image.SCALE_FAST));
                        image.add(_icon2);
                        
                     }

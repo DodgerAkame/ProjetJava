@@ -37,7 +37,7 @@ public class Tampon extends JPanel{
 
     public Tampon(){
         Interface_1 i = new Interface_1();
-        adr = i.getDropPane1().getAdresse();
+        adr = i.getDropPane1().getAdresse2();
             a = (int) Math.ceil(Math.sqrt((double)adr.size()));
             b = (int) Math.floor(Math.sqrt((double)adr.size())); 
         name = i.getDropPane1().getEffect();

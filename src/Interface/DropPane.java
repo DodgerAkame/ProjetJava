@@ -61,6 +61,17 @@ public class DropPane extends JPanel {
         private static int aa = 0;
         private static String effect;
 
+        private static int bb = 0;
+        private static int sizeI = 0;
+        private static int Size = 0;
+        private static ArrayList<String> adresse = new ArrayList<String>();
+        private static ArrayList<String> adresse2 = new ArrayList<String>();
+
+    public static ArrayList<String> getAdresse2() {
+        return adresse2;
+    }
+
+
     public static String getEffect() {
         return effect;
     }
@@ -76,12 +87,6 @@ public class DropPane extends JPanel {
     public static int getBb() {
         return bb;
     }
-        private static int bb = 0;
-        private static int sizeI = 0;
-        private static int Size = 0;
-        private static ArrayList<String> adresse = new ArrayList<String>();
-
-
  /**
      * constructor, 
      * 
@@ -100,6 +105,28 @@ public class DropPane extends JPanel {
             }
         });
 
+        }
+        
+        public void Clear (){
+
+        }
+         protected void Clearall() {
+            Runnable run = new Runnable() {
+                @Override
+                public void run() {
+                                adresse.clear();
+            adresse2.clear();
+            removeAll();
+            aa = 0;
+            bb = 0;
+            sizeI =0;
+            Size = 0;
+            revalidate();
+            repaint();
+                }
+ 
+            };
+            SwingUtilities.invokeLater(run);
         }
 
             private void bubuActionPerformed(ActionEvent evt) {                                         
@@ -208,6 +235,7 @@ public class DropPane extends JPanel {
              ArrayList<String> image;
              for(int i =0; i<img.getAdresse().size(); i++){
                  adresse.add(img.getAdresse().get(i));
+                 adresse2.add(img.getAdresse().get(i));
              }
              image = adresse;
             return image;
@@ -220,10 +248,12 @@ public class DropPane extends JPanel {
         private ArrayList<ImageIcon> list(ArrayList<String> img) {
             
             ArrayList<ImageIcon> image = new ArrayList<>();
+            int x = (int) Math.ceil(Math.sqrt((double)img.size()));
+            int y = (int) Math.floor(Math.sqrt((double)img.size()));
 
                    for(int i =0; i< img.size(); i++){
                        
-                        ImageIcon _icon = new ImageIcon(new ImageIcon(img.get(i)).getImage().getScaledInstance(1024/10, 1024/10, Image.SCALE_FAST));
+                        ImageIcon _icon = new ImageIcon(new ImageIcon(img.get(i)).getImage().getScaledInstance(1024/x, 1024/y, Image.SCALE_FAST));
                        
                        //ImageIcon _image = new ImageIcon(img.get(i));
                        Size = Size + (_icon.getIconHeight()*_icon.getIconWidth()*3);
