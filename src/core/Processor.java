@@ -7,13 +7,15 @@ package core;
 
 import Interface.Interface_1;
 import Interface.Tampon;
+
 import fftprocess.FFT;
 import fftprocess.InverseFFT;
 import fftprocess.TwoDArray;
+
 import ij.ImagePlus;
 import ij.plugin.ChannelSplitter;
-
 import ij.process.ImageProcessor;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -38,7 +40,6 @@ import javax.swing.JPanel;
 public class Processor extends JPanel {
 
     private boolean is8bitgray = false;
-    private boolean isFrequency = false;
     private JLabel message;
     private JButton bubu;
     private ArrayList<ImageIcon> image;
@@ -47,7 +48,7 @@ public class Processor extends JPanel {
         return image;
     }
 
-    public Processor(){
+    public Processor() {
         message = new JLabel();
 //        Tampon t = new Tampon();
 //        String name = t.getName();
@@ -70,13 +71,49 @@ public class Processor extends JPanel {
         return new Dimension(500, 350); //To change body of generated methods, choose Tools | Templates.
     }
 
+<<<<<<< HEAD
     public ArrayList<ImageIcon> evaluate(int a, int b ,ArrayList<String> adr, String name, String Color,int conv [], int bin, int w, int h ) throws IOException {
             ArrayList<ImageIcon> image = new ArrayList<>();
+=======
+    public ArrayList<ImageIcon> evaluate(int a, int b, ArrayList<String> adr, String name) throws IOException {
+//        ArrayList<ImageIcon> eval = new ArrayList<ImageIcon>();
+//        System.out.println(name);
+//        ImageIcon i = new ImageIcon();
+//        for (int j = 0; j < adr.size(); j++) {
+//            
+//            switch (name) {
+//                case "splitRGB":
+//                    i = splitRGB(adr.get(j), "RED");
+//                    break;
+//                case "convolution3":
+//                    int toto[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+//                    i = convolution3(adr.get(j), toto);
+//                    break;
+//                case "binarize":
+//                    i = binarize(adr.get(j), 127);
+//                    break;
+//                case "doDFT":
+//                    i = doDFT(adr.get(j));
+//                    break;
+//                case "doIDFT":
+//                    i = doIDFT(adr.get(j), 5, 5);
+//                    break;
+//                case "posterize":
+//                    i = posterize(adr.get(j), 127);
+//                    break;                          
+//            }
+//             
+//            eval.add(i);
+//        }
+//        return eval;
+>>>>>>> origin/interface_Interactive
 
-                   for(int j =0; j< adr.size(); j++){
-                       
-                        ImageIcon _icon = new ImageIcon(new ImageIcon(adr.get(j)).getImage().getScaledInstance(1024/a, 1024/b, Image.SCALE_FAST));
-                switch (name) {
+        ArrayList<ImageIcon> image = new ArrayList<>();
+
+        for (int j = 0; j < adr.size(); j++) {
+
+            ImageIcon _icon = new ImageIcon(new ImageIcon(adr.get(j)).getImage().getScaledInstance(1024 / a, 1024 / b, Image.SCALE_FAST));
+            switch (name) {
                 case "splitRGB":
                     _icon = splitRGB(adr.get(j), Color);
                     break;
@@ -91,19 +128,26 @@ public class Processor extends JPanel {
                     _icon = doDFT(adr.get(j));
                     break;
                 case "doIDFT":
+<<<<<<< HEAD
                     _icon = doIDFT(adr.get(j), w, h);
                     break;
                 case "posterize":
                     _icon = posterize(adr.get(j), 25);
                     break;                          
+=======
+                    _icon = doIDFT(adr.get(j), 512, 512);
+                    break;
+                case "posterize":
+                    _icon = posterize(adr.get(j), 5);
+                    break;
+>>>>>>> origin/interface_Interactive
             }
-                ImageIcon _icon2 = new ImageIcon(new ImageIcon(_icon.getImage()).getImage().getScaledInstance(1024/a, 1024/b, Image.SCALE_FAST));
-                       image.add(_icon2);
-                       
-                    }
-                   return image;
+            ImageIcon _icon2 = new ImageIcon(new ImageIcon(_icon.getImage()).getImage().getScaledInstance(1024 / a, 1024 / b, Image.SCALE_FAST));
+            image.add(_icon2);
+
         }
-    
+        return image;
+    }
 
     public void paint(int a, int b, ArrayList<ImageIcon> img) {
         setLayout(new GridLayout(b, a, 0, 0));
@@ -123,7 +167,7 @@ public class Processor extends JPanel {
 
     public ImageIcon splitRGB(String path, String channel) {
         try {
-            if (!is8bitgray || !isFrequency) {
+            if (!is8bitgray) {
                 ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
                 ImagePlus[] channels = ChannelSplitter.split(ip);
                 Image img;
@@ -154,7 +198,7 @@ public class Processor extends JPanel {
      */
     public ImageIcon convolution3(String path, int[] matrix) {
         try {
-            if (!is8bitgray && !isFrequency) {
+            if (!is8bitgray) {
                 ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
                 ImageProcessor iproc = ip.getProcessor();
 
@@ -181,7 +225,7 @@ public class Processor extends JPanel {
      */
     public ImageIcon binarize(String path, int trigger) {
         try {
-            if (!is8bitgray || !isFrequency) {
+            if (!is8bitgray) {
                 is8bitgray = true;
 
                 if (trigger > 255 || trigger < 0) {
@@ -204,41 +248,40 @@ public class Processor extends JPanel {
 
     public ImageIcon doDFT(String path) {
         try {
-            if (!isFrequency) {
-                BufferedImage img = ImageIO.read(new File("src" + File.separatorChar + "image.jpg"));
-                int size = 2;
-                while (size < img.getHeight() && size < img.getWidth()) {
-                    size = size * 2;
-                }
-                BufferedImage bi = new BufferedImage(size, size, BufferedImage.TYPE_BYTE_GRAY);
-                bi.getGraphics().drawImage(img, 0, 0, null);
-                int[] pixels = new int[bi.getHeight() * bi.getWidth()];
-                int counter = 0;
-                for (int i = 0; i < bi.getWidth(); i++) {
-                    for (int j = 0; j < bi.getHeight(); j++) {
-                        pixels[counter] = bi.getRGB(i, j);
-                        counter++;
-                    }
-                }
 
-                FFT fft = new FFT(pixels, bi.getWidth(), bi.getHeight());
-                int[] results = fft.getPixels();
-
-                BufferedImage fftimg = new BufferedImage(bi.getWidth(), bi.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
-
-                counter = 0;
-                for (int i = 0; i < fftimg.getWidth(); i++) {
-                    for (int j = 0; j < fftimg.getHeight(); j++) {
-                        fftimg.setRGB(i, j, results[counter]);
-                        counter++;
-                    }
-                }
-
-                isFrequency = true;
-                return new ImageIcon(fftimg);
+            BufferedImage img = ImageIO.read(new File(path));
+            int size = 2;
+            while (size < img.getHeight() && size < img.getWidth()) {
+                size = size * 2;
             }
-            return new ImageIcon(ImageIO.read(new File(path)));
+            BufferedImage bi = new BufferedImage(size, size, BufferedImage.TYPE_BYTE_GRAY);
+            bi.getGraphics().drawImage(img, 0, 0, null);
+            int[] pixels = new int[bi.getHeight() * bi.getWidth()];
+            int counter = 0;
+            for (int i = 0; i < bi.getWidth(); i++) {
+                for (int j = 0; j < bi.getHeight(); j++) {
+                    pixels[counter] = bi.getRGB(i, j);
+                    counter++;
+                }
+            }
+
+            FFT fft = new FFT(pixels, bi.getWidth(), bi.getHeight());
+            int[] results = fft.getPixels();
+
+            BufferedImage fftimg = new BufferedImage(bi.getWidth(), bi.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
+
+            counter = 0;
+            for (int i = 0; i < fftimg.getWidth(); i++) {
+                for (int j = 0; j < fftimg.getHeight(); j++) {
+                    fftimg.setRGB(i, j, results[counter]);
+                    counter++;
+                }
+            }
+
+            return new ImageIcon(fftimg);
+
         } catch (Exception e) {
+            e.printStackTrace();
             return new ImageIcon();
         }
     }
@@ -246,37 +289,35 @@ public class Processor extends JPanel {
     //TODO Problème ici
     public ImageIcon doIDFT(String path, int w, int h) {
         try {
-            if (isFrequency) {
-                BufferedImage bi = ImageIO.read(new File(path));
-                int[] pixels = new int[bi.getHeight() * bi.getWidth()];
-                int counter = 0;
-                for (int i = 0; i < bi.getWidth(); i++) {
-                    for (int j = 0; j < bi.getHeight(); j++) {
-                        pixels[counter] = bi.getRGB(i, j);
-                        counter++;
-                    }
+
+            BufferedImage bi = ImageIO.read(new File(path));
+            int[] pixels = new int[bi.getHeight() * bi.getWidth()];
+            int counter = 0;
+            for (int i = 0; i < bi.getWidth(); i++) {
+                for (int j = 0; j < bi.getHeight(); j++) {
+                    pixels[counter] = bi.getRGB(i, j);
+                    counter++;
                 }
-
-                TwoDArray tda = new TwoDArray(pixels, w, h);
-                InverseFFT ifft = new InverseFFT();
-                TwoDArray output = new TwoDArray();
-                output = ifft.transform(tda);
-                int[] outputInt = new int[bi.getHeight() * bi.getWidth()];
-                outputInt = ifft.getPixels(output);
-
-                BufferedImage result = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-                counter = 0;
-                for (int i = 0; i < result.getWidth(); i++) {
-                    for (int j = 0; j < result.getHeight(); j++) {
-                        result.setRGB(i, j, outputInt[counter]);
-                        counter++;
-                    }
-                }
-
-                isFrequency = false;
-                return new ImageIcon(result);
             }
-            return new ImageIcon(ImageIO.read(new File(path)));
+
+            TwoDArray tda = new TwoDArray(pixels, w, h);
+            InverseFFT ifft = new InverseFFT();
+            TwoDArray output = new TwoDArray();
+            output = ifft.transform(tda);
+            int[] outputInt = new int[bi.getHeight() * bi.getWidth()];
+            outputInt = ifft.getPixels(output);
+
+            BufferedImage result = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+            counter = 0;
+            for (int i = 0; i < result.getWidth(); i++) {
+                for (int j = 0; j < result.getHeight(); j++) {
+                    result.setRGB(i, j, outputInt[counter]);
+                    counter++;
+                }
+            }
+
+            return new ImageIcon(result);
+
         } catch (Exception e) {
             return new ImageIcon();
         }
@@ -325,7 +366,7 @@ public class Processor extends JPanel {
 
     public ImageIcon posterize(String path, int level) {
         try {
-            if (!is8bitgray || !isFrequency) {
+            if (!is8bitgray) {
                 BufferedImage bi = ImageIO.read(new File(path));
 
                 int[] pixels = new int[bi.getHeight() * bi.getWidth()];
