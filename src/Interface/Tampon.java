@@ -32,6 +32,10 @@ public class Tampon extends JPanel{
     private ArrayList<String> adr;
     private ArrayList<ImageIcon> img;
     private String name;
+    private String color = "RED";
+    private int mat [] = {};
+    private int bin,w,h = 0;
+    
     private int a,b;
     //private JButton bubu = new javax.swing.JButton();
 
@@ -45,7 +49,7 @@ public class Tampon extends JPanel{
         System.out.println("name is: "+name);
         Processor process = new Processor();
         try {
-            img = process.evaluate(a,b,adr, name);
+            img = process.evaluate(a, b, adr, name, color, mat, bin, w, h);
         } catch (IOException ex) {
             Logger.getLogger(Tampon.class.getName()).log(Level.SEVERE, null, ex);
         }
