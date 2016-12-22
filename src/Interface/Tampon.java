@@ -36,6 +36,10 @@ public class Tampon extends JPanel{
     private JButton bubu = new javax.swing.JButton();
 
     public Tampon(){
+        w = h = bin = p =1;
+        int temp[] = {0,1,2,3,4,5,6,7,8};
+        conv = temp;
+        color = "RED";
         importFiles();
 
  }
@@ -45,13 +49,21 @@ public class Tampon extends JPanel{
     }
     
    public void eva(){
-
+        Processor p1 = new Processor();
+        try {
+            img.clear();
+            img = p1.evaluate(a, b, adr, name, color, conv, bin, w, h, p);
+        } catch (IOException ex) {
+            Logger.getLogger(Tampon.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        importFiles();
    } 
     
      protected void importFiles() {
             Runnable run = new Runnable() {
                 @Override
                 public void run() {
+                    removeAll();
                     paint(a, b, img);
                     revalidate();
                 }

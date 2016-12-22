@@ -35,7 +35,8 @@ public class Processor {
     }
 
    public ArrayList<ImageIcon> evaluate(int a, int b ,ArrayList<String> adr, String name, String Color,int conv [], int bin, int w, int h, int p ) throws IOException {
-        for (int j = 0; j < adr.size(); j++) {
+                        ArrayList<ImageIcon> image2 =new ArrayList<>();
+       for (int j = 0; j < adr.size(); j++) {
 
             ImageIcon _icon = new ImageIcon(new ImageIcon(adr.get(j)).getImage().getScaledInstance(1024 / a, 1024 / b, Image.SCALE_FAST));
             switch (name) {
@@ -59,10 +60,10 @@ public class Processor {
                     break;                          
             }
             ImageIcon _icon2 = new ImageIcon(new ImageIcon(_icon.getImage()).getImage().getScaledInstance(1024 / a, 1024 / b, Image.SCALE_FAST));
-            image.add(_icon2);
-
+            image2.add(_icon2);
+            
         }
-        return image;
+        return image2;
     }
 
 
