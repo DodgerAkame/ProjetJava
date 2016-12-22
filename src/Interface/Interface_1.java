@@ -184,8 +184,6 @@ public class Interface_1 extends javax.swing.JFrame {
 
     private void convolutionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_convolutionMouseClicked
 fonction = "convolution3";
-        dropPane1.setEffect(fonction);
-        System.out.println("name in dropPane :" + dropPane1.getEffect());
 Tampon t = new Tampon();
 Itest g=new Itest();
 g.setVisible(true); 
@@ -197,8 +195,6 @@ g.setVisible(true);
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
       fonction = "splitRGB";
-        dropPane1.setEffect(fonction);
-        System.out.println("name in dropPane :" + dropPane1.getEffect());
 Tampon t = new Tampon();
 Itest g=new Itest();
 g.setVisible(true); 
@@ -206,8 +202,6 @@ g.setVisible(true);
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
       fonction = "binarize";
-        dropPane1.setEffect(fonction);
-        System.out.println("name in dropPane :" + dropPane1.getEffect());
 Tampon t = new Tampon();
 Itest g=new Itest();
 g.setVisible(true); 
@@ -215,8 +209,6 @@ g.setVisible(true);
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
              fonction = "doDFT";
-        dropPane1.setEffect(fonction);
-        System.out.println("name in dropPane :" + dropPane1.getEffect());
 Tampon t = new Tampon();
 Itest g=new Itest();
 g.setVisible(true); 
@@ -224,8 +216,6 @@ g.setVisible(true);
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
              fonction = "doIDFT";
-        dropPane1.setEffect(fonction);
-        System.out.println("name in dropPane :" + dropPane1.getEffect());
 Tampon t = new Tampon();
 Itest g=new Itest();
 g.setVisible(true); 
@@ -233,8 +223,6 @@ g.setVisible(true);
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
              fonction = "posterize";
-        dropPane1.setEffect(fonction);
-        System.out.println("name in dropPane :" + dropPane1.getEffect());
 Tampon t = new Tampon();
 Itest g=new Itest();
 g.setVisible(true);         // TODO add your handling code here:

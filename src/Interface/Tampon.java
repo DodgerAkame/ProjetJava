@@ -28,38 +28,24 @@ import javax.swing.SwingUtilities;
 public class Tampon extends JPanel{
 
    
-    
     private ArrayList<String> adr;
     private ArrayList<ImageIcon> img;
-    private int w;
-    private int h;
-    private int p;
-    private String color;
-    private String name;
-    private int a,b;
+    private int w, bin, h,p,a,b;
+    private String color, name;
     private int conv[];
     //private JButton bubu = new javax.swing.JButton();
 
     public Tampon(){
-        eva();
+               Interface_1 i = new Interface_1();
+        adr = i.getDropPane1().getAdresse2();
+            a = (int) Math.ceil(Math.sqrt((double)adr.size()));
+            b = (int) Math.floor(Math.sqrt((double)adr.size()));
+        importFiles();
 
  }
     
    public void eva(){
-               Interface_1 i = new Interface_1();
-        adr = i.getDropPane1().getAdresse2();
-            a = (int) Math.ceil(Math.sqrt((double)adr.size()));
-            b = (int) Math.floor(Math.sqrt((double)adr.size())); 
-        name = i.getDropPane1().getEffect();
-            System.out.println(a+" "+b);
-        System.out.println("name is: "+name);
-        Processor process = new Processor();
-        try {
-            img = process.evaluate(a, b, adr, name, w, h, p, name,conv );
-        } catch (IOException ex) {
-            Logger.getLogger(Tampon.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        importFiles();
+
    } 
     
      protected void importFiles() {
@@ -83,8 +69,6 @@ public class Tampon extends JPanel{
                         Rectangle r = new Rectangle(1024/a, 1024/b);
                         bubu.setBounds(r);
                         bubu.setName(Integer.toString(ie));
-                        //bubu.setVisible(Boolean.FALSE);
-                        //toto.add(bubu);
                         add(bubu);
                         ie++;
                         }       
@@ -94,38 +78,94 @@ public class Tampon extends JPanel{
          return new Dimension(500, 350); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public int getA() {
-        return a;
-    }
-
-    public int getB() {
-        return b;
-    }
-
-    public void setA(int a) {
-        this.a = a;
-    }
-
-    public void setB(int b) {
-        this.b = b;
+ public ArrayList<String> getAdr() {
+        return adr;
     }
 
     public void setAdr(ArrayList<String> adr) {
         this.adr = adr;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public ArrayList<ImageIcon> getImg() {
+        return img;
     }
-    
-  
 
-    public ArrayList<String> getAdr() {
-        return adr;
+    public void setImg(ArrayList<ImageIcon> img) {
+        this.img = img;
+    }
+
+    public int getW() {
+        return w;
+    }
+
+    public void setW(int w) {
+        this.w = w;
+    }
+
+    public int getBin() {
+        return bin;
+    }
+
+    public void setBin(int bin) {
+        this.bin = bin;
+    }
+
+    public int getH() {
+        return h;
+    }
+
+    public void setH(int h) {
+        this.h = h;
+    }
+
+    public int getP() {
+        return p;
+    }
+
+    public void setP(int p) {
+        this.p = p;
+    }
+
+    public int getA() {
+        return a;
+    }
+
+    public void setA(int a) {
+        this.a = a;
+    }
+
+    public int getB() {
+        return b;
+    }
+
+    public void setB(int b) {
+        this.b = b;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int[] getConv() {
+        return conv;
+    }
+
+    public void setConv(int[] conv) {
+        this.conv = conv;
+    }
+
+   
+    
 }

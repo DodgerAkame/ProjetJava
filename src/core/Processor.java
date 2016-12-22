@@ -5,17 +5,12 @@
  */
 package core;
 
-import Interface.Interface_1;
-import Interface.Tampon;
-
 import fftprocess.FFT;
 import fftprocess.InverseFFT;
 import fftprocess.TwoDArray;
-
 import ij.ImagePlus;
 import ij.plugin.ChannelSplitter;
 import ij.process.ImageProcessor;
-
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -24,23 +19,19 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
- * @author dodger
+ * @author Melh
  */
-public class Processor extends JPanel {
-
+public class Processor {
+ 
     private boolean is8bitgray = false;
-    private JLabel message;
     private JButton bubu;
     private ArrayList<ImageIcon> image;
 
@@ -49,67 +40,10 @@ public class Processor extends JPanel {
     }
 
     public Processor() {
-        message = new JLabel();
-//        Tampon t = new Tampon();
-//        String name = t.getName();
-//        ArrayList<String> adr = t.getAdr();
-//        try {
-//            image = evaluate(adr, name);
-//        }
-//        catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        paint(t.getA(), t.getB(), image);
-//        revalidate();
-//        repaint();
-//        System.out.println("j'ai fini le paint des " + image.size() + " éléments");
-
     }
 
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(500, 350); //To change body of generated methods, choose Tools | Templates.
-    }
-
-<<<<<<< HEAD
-    public ArrayList<ImageIcon> evaluate(int a, int b ,ArrayList<String> adr, String name, String Color,int conv [], int bin, int w, int h ) throws IOException {
+   public ArrayList<ImageIcon> evaluate(int a, int b ,ArrayList<String> adr, String name, String Color,int conv [], int bin, int w, int h, int p ) throws IOException {
             ArrayList<ImageIcon> image = new ArrayList<>();
-=======
-    public ArrayList<ImageIcon> evaluate(int a, int b, ArrayList<String> adr, String name) throws IOException {
-//        ArrayList<ImageIcon> eval = new ArrayList<ImageIcon>();
-//        System.out.println(name);
-//        ImageIcon i = new ImageIcon();
-//        for (int j = 0; j < adr.size(); j++) {
-//            
-//            switch (name) {
-//                case "splitRGB":
-//                    i = splitRGB(adr.get(j), "RED");
-//                    break;
-//                case "convolution3":
-//                    int toto[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-//                    i = convolution3(adr.get(j), toto);
-//                    break;
-//                case "binarize":
-//                    i = binarize(adr.get(j), 127);
-//                    break;
-//                case "doDFT":
-//                    i = doDFT(adr.get(j));
-//                    break;
-//                case "doIDFT":
-//                    i = doIDFT(adr.get(j), 5, 5);
-//                    break;
-//                case "posterize":
-//                    i = posterize(adr.get(j), 127);
-//                    break;                          
-//            }
-//             
-//            eval.add(i);
-//        }
-//        return eval;
->>>>>>> origin/interface_Interactive
-
-        ArrayList<ImageIcon> image = new ArrayList<>();
-
         for (int j = 0; j < adr.size(); j++) {
 
             ImageIcon _icon = new ImageIcon(new ImageIcon(adr.get(j)).getImage().getScaledInstance(1024 / a, 1024 / b, Image.SCALE_FAST));
@@ -128,19 +62,11 @@ public class Processor extends JPanel {
                     _icon = doDFT(adr.get(j));
                     break;
                 case "doIDFT":
-<<<<<<< HEAD
                     _icon = doIDFT(adr.get(j), w, h);
                     break;
                 case "posterize":
-                    _icon = posterize(adr.get(j), 25);
+                    _icon = posterize(adr.get(j), p);
                     break;                          
-=======
-                    _icon = doIDFT(adr.get(j), 512, 512);
-                    break;
-                case "posterize":
-                    _icon = posterize(adr.get(j), 5);
-                    break;
->>>>>>> origin/interface_Interactive
             }
             ImageIcon _icon2 = new ImageIcon(new ImageIcon(_icon.getImage()).getImage().getScaledInstance(1024 / a, 1024 / b, Image.SCALE_FAST));
             image.add(_icon2);
@@ -149,21 +75,6 @@ public class Processor extends JPanel {
         return image;
     }
 
-    public void paint(int a, int b, ArrayList<ImageIcon> img) {
-        setLayout(new GridLayout(b, a, 0, 0));
-
-        for (ImageIcon i : img) { //JLabel toto = new JLabel(icon);
-            bubu = new JButton(i);
-            Rectangle r = new Rectangle(1024 / a, 1024 / b);
-            bubu.setBounds(r);
-            //bubu.setVisible(Boolean.FALSE);
-            //toto.add(bubu);
-            add(bubu);
-        }
-        revalidate();
-        repaint();
-
-    }
 
     public ImageIcon splitRGB(String path, String channel) {
         try {
@@ -435,4 +346,6 @@ public class Processor extends JPanel {
         }
 
     }
+
+ 
 }

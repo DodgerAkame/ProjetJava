@@ -59,8 +59,6 @@ public class DropPane extends JPanel {
         private JLabel message;  
         private javax.swing.JButton bubu;
         private static int aa = 0;
-        private static String effect;
-
         private static int bb = 0;
         private static int sizeI = 0;
         private static int Size = 0;
@@ -69,15 +67,6 @@ public class DropPane extends JPanel {
 
     public static ArrayList<String> getAdresse2() {
         return adresse2;
-    }
-
-
-    public static String getEffect() {
-        return effect;
-    }
-
-    public void setEffect(String effect) {
-        this.effect = effect;
     }
 
     public static int getAa() {
