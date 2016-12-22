@@ -31,16 +31,22 @@ public class Tampon extends JPanel{
     
     private ArrayList<String> adr;
     private ArrayList<ImageIcon> img;
+    private int w;
+    private int h;
+    private int p;
+    private String color;
     private String name;
-    private String color = "RED";
-    private int mat [] = {};
-    private int bin,w,h = 0;
-    
     private int a,b;
+    private int conv[];
     //private JButton bubu = new javax.swing.JButton();
 
     public Tampon(){
-        Interface_1 i = new Interface_1();
+        eva();
+
+ }
+    
+   public void eva(){
+               Interface_1 i = new Interface_1();
         adr = i.getDropPane1().getAdresse2();
             a = (int) Math.ceil(Math.sqrt((double)adr.size()));
             b = (int) Math.floor(Math.sqrt((double)adr.size())); 
@@ -49,14 +55,12 @@ public class Tampon extends JPanel{
         System.out.println("name is: "+name);
         Processor process = new Processor();
         try {
-            img = process.evaluate(a, b, adr, name, color, mat, bin, w, h);
+            img = process.evaluate(a, b, adr, name, w, h, p, name,conv );
         } catch (IOException ex) {
             Logger.getLogger(Tampon.class.getName()).log(Level.SEVERE, null, ex);
         }
         importFiles();
-               }
-    
-    
+   } 
     
      protected void importFiles() {
             Runnable run = new Runnable() {
