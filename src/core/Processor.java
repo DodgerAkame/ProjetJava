@@ -71,7 +71,11 @@ public class Processor extends JPanel {
         return new Dimension(500, 350); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public ArrayList<ImageIcon> evaluate(int a, int b ,ArrayList<String> adr, String name) throws IOException {
+<<<<<<< HEAD
+    public ArrayList<ImageIcon> evaluate(int a, int b ,ArrayList<String> adr, String name, String Color,int conv [], int bin, int w, int h ) throws IOException {
+            ArrayList<ImageIcon> image = new ArrayList<>();
+=======
+    public ArrayList<ImageIcon> evaluate(int a, int b, ArrayList<String> adr, String name) throws IOException {
 //        ArrayList<ImageIcon> eval = new ArrayList<ImageIcon>();
 //        System.out.println(name);
 //        ImageIcon i = new ImageIcon();
@@ -102,6 +106,7 @@ public class Processor extends JPanel {
 //            eval.add(i);
 //        }
 //        return eval;
+>>>>>>> origin/interface_Interactive
 
         ArrayList<ImageIcon> image = new ArrayList<>();
 
@@ -110,24 +115,32 @@ public class Processor extends JPanel {
             ImageIcon _icon = new ImageIcon(new ImageIcon(adr.get(j)).getImage().getScaledInstance(1024 / a, 1024 / b, Image.SCALE_FAST));
             switch (name) {
                 case "splitRGB":
-                    _icon = splitRGB(adr.get(j), "RED");
+                    _icon = splitRGB(adr.get(j), Color);
                     break;
                 case "convolution3":
                     int toto[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-                    _icon = convolution3(adr.get(j), toto);
+                    _icon = convolution3(adr.get(j), conv);
                     break;
                 case "binarize":
-                    _icon = binarize(adr.get(j), 127);
+                    _icon = binarize(adr.get(j), bin);
                     break;
                 case "doDFT":
                     _icon = doDFT(adr.get(j));
                     break;
                 case "doIDFT":
+<<<<<<< HEAD
+                    _icon = doIDFT(adr.get(j), w, h);
+                    break;
+                case "posterize":
+                    _icon = posterize(adr.get(j), 25);
+                    break;                          
+=======
                     _icon = doIDFT(adr.get(j), 512, 512);
                     break;
                 case "posterize":
                     _icon = posterize(adr.get(j), 5);
                     break;
+>>>>>>> origin/interface_Interactive
             }
             ImageIcon _icon2 = new ImageIcon(new ImageIcon(_icon.getImage()).getImage().getScaledInstance(1024 / a, 1024 / b, Image.SCALE_FAST));
             image.add(_icon2);
