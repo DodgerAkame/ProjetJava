@@ -33,16 +33,16 @@ public class Tampon extends JPanel{
     private int w, bin, h,p,a,b;
     private String color, name;
     private int conv[];
-    //private JButton bubu = new javax.swing.JButton();
+    private JButton bubu = new javax.swing.JButton();
 
     public Tampon(){
-               Interface_1 i = new Interface_1();
-        adr = i.getDropPane1().getAdresse2();
-            a = (int) Math.ceil(Math.sqrt((double)adr.size()));
-            b = (int) Math.floor(Math.sqrt((double)adr.size()));
         importFiles();
 
  }
+         @Override
+    public Dimension getPreferredSize() {
+         return new Dimension(500, 350); //To change body of generated methods, choose Tools | Templates.
+    }
     
    public void eva(){
 
@@ -52,7 +52,6 @@ public class Tampon extends JPanel{
             Runnable run = new Runnable() {
                 @Override
                 public void run() {
-                    //adresse.clear();
                     paint(a, b, img);
                     revalidate();
                 }
@@ -73,10 +72,7 @@ public class Tampon extends JPanel{
                         ie++;
                         }       
     }
-     @Override
-    public Dimension getPreferredSize() {
-         return new Dimension(500, 350); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
  public ArrayList<String> getAdr() {
         return adr;

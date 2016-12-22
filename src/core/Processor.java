@@ -11,20 +11,13 @@ import fftprocess.TwoDArray;
 import ij.ImagePlus;
 import ij.plugin.ChannelSplitter;
 import ij.process.ImageProcessor;
-import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 /**
  *
  * @author Melh
@@ -32,7 +25,6 @@ import javax.swing.JPanel;
 public class Processor {
  
     private boolean is8bitgray = false;
-    private JButton bubu;
     private ArrayList<ImageIcon> image;
 
     public ArrayList<ImageIcon> getImage() {
@@ -43,7 +35,6 @@ public class Processor {
     }
 
    public ArrayList<ImageIcon> evaluate(int a, int b ,ArrayList<String> adr, String name, String Color,int conv [], int bin, int w, int h, int p ) throws IOException {
-            ArrayList<ImageIcon> image = new ArrayList<>();
         for (int j = 0; j < adr.size(); j++) {
 
             ImageIcon _icon = new ImageIcon(new ImageIcon(adr.get(j)).getImage().getScaledInstance(1024 / a, 1024 / b, Image.SCALE_FAST));
@@ -52,7 +43,6 @@ public class Processor {
                     _icon = splitRGB(adr.get(j), Color);
                     break;
                 case "convolution3":
-                    int toto[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
                     _icon = convolution3(adr.get(j), conv);
                     break;
                 case "binarize":
@@ -93,7 +83,7 @@ public class Processor {
                 return new ImageIcon(img);
             }
             return new ImageIcon(ImageIO.read(new File(path)));
-        } catch (Exception e) {
+        } catch (IOException e) {
             return new ImageIcon();
         }
     }
@@ -105,6 +95,7 @@ public class Processor {
      * @param g
      * @param path
      * @param matrix input type is like (1, 2, 3, 4, 5, 6, 7, 8, 9)
+     * @return 
      * @throws IOException
      */
     public ImageIcon convolution3(String path, int[] matrix) {
@@ -119,7 +110,7 @@ public class Processor {
                 return new ImageIcon(img);
             }
             return new ImageIcon(ImageIO.read(new File(path)));
-        } catch (Exception e) {
+        } catch (IOException e) {
             return new ImageIcon();
         }
     }
@@ -152,7 +143,7 @@ public class Processor {
                 return new ImageIcon(binary);
             }
             return new ImageIcon(ImageIO.read(new File(path)));
-        } catch (Exception e) {
+        } catch (IOException e) {
             return new ImageIcon();
         }
     }
@@ -191,8 +182,7 @@ public class Processor {
 
             return new ImageIcon(fftimg);
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
             return new ImageIcon();
         }
     }

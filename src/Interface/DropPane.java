@@ -64,6 +64,11 @@ public class DropPane extends JPanel {
         private static int Size = 0;
         private static ArrayList<String> adresse = new ArrayList<String>();
         private static ArrayList<String> adresse2 = new ArrayList<String>();
+        private static ArrayList<ImageIcon> imagef = new ArrayList<ImageIcon>();
+
+    public static ArrayList<ImageIcon> getImagef() {
+        return imagef;
+    }
 
     public static ArrayList<String> getAdresse2() {
         return adresse2;
@@ -95,16 +100,14 @@ public class DropPane extends JPanel {
         });
 
         }
-        
-        public void Clear (){
 
-        }
          protected void Clearall() {
             Runnable run = new Runnable() {
                 @Override
                 public void run() {
                                 adresse.clear();
             adresse2.clear();
+            imagef.clear();
             removeAll();
             aa = 0;
             bb = 0;
@@ -205,6 +208,7 @@ public class DropPane extends JPanel {
                     adresse.clear();
                     ArrayList<String> img = ListImage(files);                   
                     ArrayList<ImageIcon> image = list(img);
+                    imagef = image;
                     ArrayList<Integer> calc = calcul(img.size());
                     paint(calc.get(0), calc.get(1), image);  
                     System.out.println("adresse : " +adresse.size());
