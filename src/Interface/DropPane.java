@@ -211,7 +211,6 @@ public class DropPane extends JPanel {
                     imagef = image;
                     ArrayList<Integer> calc = calcul(img.size());
                     paint(calc.get(0), calc.get(1), image);  
-                    System.out.println("adresse : " +adresse.size());
                     revalidate();
                 }
  
@@ -301,7 +300,6 @@ public class DropPane extends JPanel {
           public void paint(int a, int b, ArrayList<ImageIcon> img) {
                 setLayout(new GridLayout(b,a,0,0));
                 int ie =0;
-                        System.out.println("nb layout : " + a*b+ " x : " +a+ " y : "+ b);
                         for(ImageIcon i : img){ //JLabel toto = new JLabel(icon);
                         bubu = new JButton(i);
                         Rectangle r = new Rectangle(1024/a, 1024/b);
