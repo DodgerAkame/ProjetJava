@@ -30,13 +30,29 @@ public class Tampon extends JPanel{
    
     private ArrayList<String> adr;
     private ArrayList<ImageIcon> img;
-    private int w, bin, h,p,a,b;
+    private int w, bin, h,p,a,b,bright, con;
+
+    public int getBright() {
+        return bright;
+    }
+
+    public void setBright(int bright) {
+        this.bright = bright;
+    }
+
+    public int getCon() {
+        return con;
+    }
+
+    public void setCon(int con) {
+        this.con = con;
+    }
     private String color, name;
     private int conv[];
     private JButton bubu = new javax.swing.JButton();
 
     public Tampon(){
-        w = h = bin = p =1;
+        w = h = bin = p = bright=con=1;
         int temp[] = {0,1,2,3,4,5,6,7,8};
         conv = temp;
         color = "RED";

@@ -34,7 +34,7 @@ public class Processor {
     public Processor() {
     }
 
-   public ArrayList<ImageIcon> evaluate(int a, int b ,ArrayList<String> adr, String name, String Color,int conv [], int bin, int w, int h, int p ) throws IOException {
+   public ArrayList<ImageIcon> evaluate(int a, int b ,ArrayList<String> adr, String name, String Color,int conv [], int bin, int w, int h, int p ) throws IOException {//int b, int c
                         ArrayList<ImageIcon> image2 =new ArrayList<>();
        for (int j = 0; j < adr.size(); j++) {
 
@@ -57,7 +57,13 @@ public class Processor {
                     break;
                 case "posterize":
                     _icon = posterize(adr.get(j), p);
-                    break;                          
+                    break;
+                case "brightness":
+                    //_icon = brightness(adr.get(j), b);
+                    break; 
+                case "contrast":
+                    //_icon = contrast(adr.get(j), c);
+                    break; 
             }
             ImageIcon _icon2 = new ImageIcon(new ImageIcon(_icon.getImage()).getImage().getScaledInstance(1024 / a, 1024 / b, Image.SCALE_FAST));
             image2.add(_icon2);
