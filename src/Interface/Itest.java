@@ -189,7 +189,7 @@ public class Itest extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
@@ -389,12 +389,13 @@ public class Itest extends javax.swing.JFrame {
             .addGap(0, 350, Short.MAX_VALUE)
         );
 
-        jLabel7.setText("255");
+        jLabel7.setText("15");
 
-        jLabel8.setText("127");
+        jLabel8.setText("5");
 
-        jSlider2.setMaximum(255);
-        jSlider2.setValue(127);
+        jSlider2.setMaximum(15);
+        jSlider2.setMinimum(2);
+        jSlider2.setValue(5);
         jSlider2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jSlider2MouseReleased(evt);
@@ -403,7 +404,7 @@ public class Itest extends javax.swing.JFrame {
 
         jLabel9.setText("Posterisation : ");
 
-        jLabel10.setText("0");
+        jLabel10.setText("2");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -459,7 +460,8 @@ public class Itest extends javax.swing.JFrame {
         );
 
         jSlider3.setMaximum(255);
-        jSlider3.setValue(127);
+        jSlider3.setMinimum(-255);
+        jSlider3.setValue(0);
         jSlider3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jSlider3MouseReleased(evt);
@@ -470,9 +472,9 @@ public class Itest extends javax.swing.JFrame {
 
         jLabel12.setText("Brightness :");
 
-        jLabel13.setText("127");
+        jLabel13.setText("0");
 
-        jLabel14.setText("0");
+        jLabel14.setText("-255");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -483,7 +485,7 @@ public class Itest extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
@@ -491,7 +493,7 @@ public class Itest extends javax.swing.JFrame {
                         .addGap(6, 6, 6))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(22, Short.MAX_VALUE))
+                        .addContainerGap(21, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -527,19 +529,18 @@ public class Itest extends javax.swing.JFrame {
             .addGap(0, 350, Short.MAX_VALUE)
         );
 
-        jSlider4.setMaximum(255);
-        jSlider4.setValue(127);
+        jSlider4.setToolTipText("");
         jSlider4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jSlider4MouseReleased(evt);
             }
         });
 
-        jLabel15.setText("255");
+        jLabel15.setText("100");
 
         jLabel16.setText("Contrast :");
 
-        jLabel17.setText("127");
+        jLabel17.setText("50");
 
         jLabel18.setText("0");
 
@@ -552,7 +553,7 @@ public class Itest extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
@@ -562,7 +563,7 @@ public class Itest extends javax.swing.JFrame {
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSlider4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16))
-                        .addContainerGap(18, Short.MAX_VALUE))))
+                        .addContainerGap(16, Short.MAX_VALUE))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -588,7 +589,7 @@ public class Itest extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 692, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -602,16 +603,20 @@ public class Itest extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String value = (String) jComboBox1.getSelectedItem();
         System.out.println(value);
         tampon1.setColor(value);
         tampon1.setName("splitRGB");
         tampon1.eva();
+       
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-                int a0 = (int) c0.getValue();
+        int a0 = (int) c0.getValue();
         int a1 = (int) c1.getValue();
         int a2 = (int) c2.getValue();
         int a3 = (int) c3.getValue();
@@ -620,7 +625,7 @@ public class Itest extends javax.swing.JFrame {
         int a6 = (int) c6.getValue();
         int a7 = (int) c7.getValue();
         int a8 = (int) c8.getValue();
-        int convo[] = {a0,a1,a2,a3,a4,a5,a6,a7,a8};
+        int convo[] = {a0, a1, a2, a3, a4, a5, a6, a7, a8};
         tampon2.setConv(convo);
         tampon2.setName("convolution3");
         tampon2.eva();
@@ -639,19 +644,21 @@ public class Itest extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         tampon9.setName("doDFT");
         tampon9.eva();
+        tampon4.setName("doDFT");
+        tampon4.eva();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-     int h = (int) H.getValue();
-     int w = (int) W.getValue();
-     tampon4.setW(w);
-     tampon4.setH(h);
-     tampon4.setName("doIDFT");
-     tampon4.eva();
+        int h = (int) H.getValue();
+        int w = (int) W.getValue();
+        tampon4.setW(w);
+        tampon4.setH(h);
+        tampon4.setName("doIDFT");
+        tampon4.eva();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jSlider2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider2MouseReleased
-            int pos = jSlider2.getValue();
+        int pos = jSlider2.getValue();
         tampon5.setP(pos);
         tampon5.setName("posterize");
         jLabel8.setText(Integer.toString(pos));
@@ -659,18 +666,19 @@ public class Itest extends javax.swing.JFrame {
     }//GEN-LAST:event_jSlider2MouseReleased
 
     private void jSlider3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider3MouseReleased
-                    int bri = jSlider3.getValue();
+        float bri = (float) jSlider3.getValue();
         tampon7.setBright(bri);
         tampon7.setName("brightness");
-        jLabel13.setText(Integer.toString(bri));
+        jLabel13.setText(Float.toString(bri));
         tampon7.eva();
     }//GEN-LAST:event_jSlider3MouseReleased
 
     private void jSlider4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider4MouseReleased
-        int con = jSlider4.getValue();
-        tampon6.setCon(con);
-        tampon6.setName("brightness");
-        jLabel17.setText(Integer.toString(con));
+        float con = (float) jSlider4.getValue();
+        tampon6.setCon(con / 100f);
+        tampon6.setName("contrast");
+        System.out.println(con / 100f);
+        jLabel17.setText(Integer.toString((int) con));
         tampon6.eva();
     }//GEN-LAST:event_jSlider4MouseReleased
 
@@ -772,25 +780,32 @@ public class Itest extends javax.swing.JFrame {
     public Tampon getTampon1() {
         return tampon1;
     }
-public Tampon getTampon2() {
+
+    public Tampon getTampon2() {
         return tampon2;
     }
-public Tampon getTampon3() {
+
+    public Tampon getTampon3() {
         return tampon3;
     }
-public Tampon getTampon4() {
+
+    public Tampon getTampon4() {
         return tampon4;
     }
-public Tampon getTampon5() {
+
+    public Tampon getTampon5() {
         return tampon5;
     }
-public Tampon getTampon6() {
+
+    public Tampon getTampon6() {
         return tampon6;
     }
-public Tampon getTampon7() {
+
+    public Tampon getTampon7() {
         return tampon7;
     }
-public Tampon getTampon9() {
+
+    public Tampon getTampon9() {
         return tampon9;
     }
 

@@ -113,14 +113,21 @@ public class Interface_1 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Itest inter = new Itest();
         ArrayList<Tampon> t = new ArrayList<>();
-        t.add(inter.getTampon1());t.add(inter.getTampon2());t.add(inter.getTampon3());t.add(inter.getTampon4());t.add(inter.getTampon5());t.add(inter.getTampon6());t.add(inter.getTampon7());t.add(inter.getTampon9());
-        for(Tampon tampon : t){
-        tampon.setAdr(dropPane1.getAdresse2());
-        tampon.setImg(dropPane1.getImagef());
-        tampon.setA(dropPane1.getAa());
-        tampon.setB(dropPane1.getBb());
+        t.add(inter.getTampon1());
+        t.add(inter.getTampon2());
+        t.add(inter.getTampon3());
+        t.add(inter.getTampon4());
+        t.add(inter.getTampon5());
+        t.add(inter.getTampon6());
+        t.add(inter.getTampon7());
+        t.add(inter.getTampon9());
+        for (Tampon tampon : t) {
+            tampon.setAdr(dropPane1.getAdresse2());
+            tampon.setImg(dropPane1.getImagef());
+            tampon.setA(dropPane1.getAa());
+            tampon.setB(dropPane1.getBb());
         }
-                inter.setVisible(true);
+        inter.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -161,13 +168,10 @@ public class Interface_1 extends javax.swing.JFrame {
     public DropPane getDropPane1() {
         return dropPane1;
     }
-    
-
 
     public String getFonction() {
         return fonction;
     }
-
 
     public Processor getProcess() {
         return process;

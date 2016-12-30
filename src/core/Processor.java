@@ -13,18 +13,19 @@ import ij.plugin.ChannelSplitter;
 import ij.process.ImageProcessor;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+
 /**
  *
  * @author Melh
  */
 public class Processor {
- 
-    private boolean is8bitgray = false;
+
     private ArrayList<ImageIcon> image;
 
     public ArrayList<ImageIcon> getImage() {
@@ -34,14 +35,14 @@ public class Processor {
     public Processor() {
     }
 
-   public ArrayList<ImageIcon> evaluate(int a, int b ,ArrayList<String> adr, String name, String Color,int conv [], int bin, int w, int h, int p ) throws IOException {//int b, int c
-                        ArrayList<ImageIcon> image2 =new ArrayList<>();
-       for (int j = 0; j < adr.size(); j++) {
+    public ArrayList<ImageIcon> evaluate(int a, int b, ArrayList<String> adr, String name, String color, int conv[], int bin, int w, int h, int p, float stepbri, float stepcon) throws IOException {//int b, int c
+        ArrayList<ImageIcon> image2 = new ArrayList<>();
+        for (int j = 0; j < adr.size(); j++) {
 
             ImageIcon _icon = new ImageIcon(new ImageIcon(adr.get(j)).getImage().getScaledInstance(1024 / a, 1024 / b, Image.SCALE_FAST));
             switch (name) {
                 case "splitRGB":
-                    _icon = splitRGB(adr.get(j), Color);
+                    _icon = splitRGB(adr.get(j), color);
                     break;
                 case "convolution3":
                     _icon = convolution3(adr.get(j), conv);
@@ -59,37 +60,34 @@ public class Processor {
                     _icon = posterize(adr.get(j), p);
                     break;
                 case "brightness":
-                    //_icon = brightness(adr.get(j), b);
-                    break; 
+                    _icon = brightness(adr.get(j), stepbri);
+                    break;
                 case "contrast":
-                    //_icon = contrast(adr.get(j), c);
-                    break; 
+                    _icon = contrast(adr.get(j), stepcon);
+                    break;
             }
             ImageIcon _icon2 = new ImageIcon(new ImageIcon(_icon.getImage()).getImage().getScaledInstance(1024 / a, 1024 / b, Image.SCALE_FAST));
             image2.add(_icon2);
-            
+
         }
         return image2;
     }
 
-
     public ImageIcon splitRGB(String path, String channel) {
         try {
-            if (!is8bitgray) {
-                ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
-                ImagePlus[] channels = ChannelSplitter.split(ip);
-                Image img;
-                if (channel.equals("RED")) {
-                    img = channels[0].getImage();
-                } else if (channel.equals("GREEN")) {
-                    img = channels[1].getImage();
-                } else {
-                    img = channels[2].getImage();
-                }
 
-                return new ImageIcon(img);
+            ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
+            ImagePlus[] channels = ChannelSplitter.split(ip);
+            Image img;
+            if (channel.equals("RED")) {
+                img = channels[0].getImage();
+            } else if (channel.equals("GREEN")) {
+                img = channels[1].getImage();
+            } else {
+                img = channels[2].getImage();
             }
-            return new ImageIcon(ImageIO.read(new File(path)));
+
+            return new ImageIcon(img);
         } catch (IOException e) {
             return new ImageIcon();
         }
@@ -102,21 +100,20 @@ public class Processor {
      * @param g
      * @param path
      * @param matrix input type is like (1, 2, 3, 4, 5, 6, 7, 8, 9)
-     * @return 
+     * @return
      * @throws IOException
      */
     public ImageIcon convolution3(String path, int[] matrix) {
         try {
-            if (!is8bitgray) {
-                ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
-                ImageProcessor iproc = ip.getProcessor();
 
-                iproc.convolve3x3(matrix);
-                Image img = iproc.getBufferedImage();
+            ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
+            ImageProcessor iproc = ip.getProcessor();
 
-                return new ImageIcon(img);
-            }
-            return new ImageIcon(ImageIO.read(new File(path)));
+            iproc.convolve3x3(matrix);
+            Image img = iproc.getBufferedImage();
+
+            return new ImageIcon(img);
+
         } catch (IOException e) {
             return new ImageIcon();
         }
@@ -134,22 +131,18 @@ public class Processor {
      */
     public ImageIcon binarize(String path, int trigger) {
         try {
-            if (!is8bitgray) {
-                is8bitgray = true;
 
-                if (trigger > 255 || trigger < 0) {
-                    trigger = 127;
-                }
-
-                ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
-                ImageProcessor iproc = ip.getProcessor();
-                ImageProcessor grayproc = iproc.convertToByte(true);
-                grayproc.threshold(trigger);
-                Image binary = grayproc.getBufferedImage();
-
-                return new ImageIcon(binary);
+            if (trigger > 255 || trigger < 0) {
+                trigger = 127;
             }
-            return new ImageIcon(ImageIO.read(new File(path)));
+
+            ImagePlus ip = new ImagePlus("image", ImageIO.read(new File(path)));
+            ImageProcessor iproc = ip.getProcessor();
+            ImageProcessor grayproc = iproc.convertToByte(true);
+            grayproc.threshold(trigger);
+            Image binary = grayproc.getBufferedImage();
+
+            return new ImageIcon(binary);
         } catch (IOException e) {
             return new ImageIcon();
         }
@@ -231,118 +224,113 @@ public class Processor {
         }
     }
 //TODO slider not a button like bubu, bubu the button and not bubu the slider.
-//    public ImageIcon contrast(String path, String how){
-//       try{ if (!is8bitgray || !isFrequency) {
-//
-//            BufferedImage img = ImageIO.read(new File(path));
-//            float contrastFactor = 0;
-//            if (how.equals("plus")) {
-//                contrastFactor = 15;
-//            } else if (how.equals("minus")) {
-//                contrastFactor = -15;
-//            }
-//
-//            RescaleOp op = new RescaleOp(1f, contrastFactor, null);
-//            img = op.filter(img, img);
-//            return new ImageIcon(img);
-//        }
-//        return new ImageIcon(ImageIO.read(new File(path)));
-//     } catch (Exception e){
-//          return new ImageIcon(); 
-//       }
-//    }
-//
-//    public ImageIcon brightness(String path, String how) throws IOException {
-//      try{  if (!is8bitgray || !isFrequency) {
-//            BufferedImage img = ImageIO.read(new File(path));
-//            float scaleFactor = 0;
-//            if (how.equals("plus")) {
-//                scaleFactor = 1.1f;
-//            } else if (how.equals("minus")) {
-//                scaleFactor = 0.9f;
-//            }
-//
-//            RescaleOp op = new RescaleOp(scaleFactor, 0, null);
-//            img = op.filter(img, img);
-//            return new ImageIcon(img);
-//        }
-//        return new ImageIcon(ImageIO.read(new File(path)));
-//           } catch (Exception e){
-//          return new ImageIcon(); 
-//}
-//    }
 
-    public ImageIcon posterize(String path, int level) {
+    public ImageIcon contrast(String path, float step) {
         try {
-            if (!is8bitgray) {
-                BufferedImage bi = ImageIO.read(new File(path));
+            BufferedImage img = ImageIO.read(new File(path));
+            BufferedImage result = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
 
-                int[] pixels = new int[bi.getHeight() * bi.getWidth()];
-                int counter = 0;
-                for (int i = 0; i < bi.getWidth(); i++) {
-                    for (int j = 0; j < bi.getHeight(); j++) {
-                        pixels[counter] = bi.getRGB(i, j);
-                        counter++;
-                    }
-                }
-
-                int[] levels = new int[level + 1];
-                int reste = 255 % level;
-                for (int i = 0; i < level; i++) {
-                    levels[i] = (i + 1) * ((255 - reste) / level);
-                }
-                levels[level] = 255;
-
-                for (int i = 0; i < pixels.length; i++) {
-                    int pixel = pixels[i];
+            for (int i = 0; i < img.getWidth(); i++) {
+                for (int j = 0; j < img.getHeight(); j++) {
+                    int pixel = img.getRGB(i, j);
                     int red = (pixel & 0x00ff0000) >> 16;
                     int green = (pixel & 0x0000ff00) >> 8;
                     int blue = (pixel & 0x000000ff);
 
-                    boolean redChanged = false;
-                    boolean greenChanged = false;
-                    boolean blueChanged = false;
-                    for (int j = 0; j < level; j++) {
-                        if (red < levels[j] && !redChanged) {
-                            red = (int) Math.floor(levels[j] / 2);
-                            redChanged = true;
-                        }
-                        if (green < levels[j] && !greenChanged) {
-                            green = (int) Math.floor(levels[j] / 2);
-                            greenChanged = true;
-                        }
-                        if (blue < levels[j] && !blueChanged) {
-                            blue = (int) Math.floor(levels[j] / 2);
-                            blueChanged = true;
-                        }
+                    int newRed = (int) (step * (red - 128) + 128);
+                    int newGreen = (int) (step * (green - 128) + 128);
+                    int newBlue = (int) (step * (blue - 128) + 128);
 
-                        if (redChanged && greenChanged && blueChanged) {
-                            break;
-                        }
-                    }
-
-                    pixel = (0xff000000 | red << 16 | green << 8 | blue);
-                    pixels[i] = pixel;
-
+                    int newPixel = (0xff000000 | newRed << 16 | newGreen << 8 | newBlue);
+                    result.setRGB(i, j, newPixel);
                 }
-
-                counter = 0;
-                BufferedImage img = new BufferedImage(bi.getWidth(), bi.getHeight(), bi.getType());
-                for (int i = 0; i < bi.getWidth(); i++) {
-                    for (int j = 0; j < bi.getHeight(); j++) {
-                        img.setRGB(i, j, pixels[counter]);
-                        counter++;
-                    }
-                }
-
-                return new ImageIcon(img);
             }
-            return new ImageIcon(ImageIO.read(new File(path)));
+            return new ImageIcon(result);
+        } catch (Exception e) {
+            return new ImageIcon();
+        }
+    }
+
+    public ImageIcon brightness(String path, float step) throws IOException {
+        try {
+            BufferedImage img = ImageIO.read(new File(path));
+
+            RescaleOp op = new RescaleOp(1f, step, null);
+            img = op.filter(img, img);
+           
+            return new ImageIcon(img);
+        } catch (Exception e) {
+            return new ImageIcon();
+        }
+    }
+
+    public ImageIcon posterize(String path, int level) {
+        try {
+
+            BufferedImage bi = ImageIO.read(new File(path));
+
+            int[] pixels = new int[bi.getHeight() * bi.getWidth()];
+            int counter = 0;
+            for (int i = 0; i < bi.getWidth(); i++) {
+                for (int j = 0; j < bi.getHeight(); j++) {
+                    pixels[counter] = bi.getRGB(i, j);
+                    counter++;
+                }
+            }
+
+            int[] levels = new int[level + 1];
+            int reste = 255 % level;
+            for (int i = 0; i < level; i++) {
+                levels[i] = (i + 1) * ((255 - reste) / level);
+            }
+            levels[level] = 255;
+
+            for (int i = 0; i < pixels.length; i++) {
+                int pixel = pixels[i];
+                int red = (pixel & 0x00ff0000) >> 16;
+                int green = (pixel & 0x0000ff00) >> 8;
+                int blue = (pixel & 0x000000ff);
+
+                boolean redChanged = false;
+                boolean greenChanged = false;
+                boolean blueChanged = false;
+                for (int j = 0; j < level; j++) {
+                    if (red < levels[j] && !redChanged) {
+                        red = (int) Math.floor(levels[j] / 2);
+                        redChanged = true;
+                    }
+                    if (green < levels[j] && !greenChanged) {
+                        green = (int) Math.floor(levels[j] / 2);
+                        greenChanged = true;
+                    }
+                    if (blue < levels[j] && !blueChanged) {
+                        blue = (int) Math.floor(levels[j] / 2);
+                        blueChanged = true;
+                    }
+
+                    if (redChanged && greenChanged && blueChanged) {
+                        break;
+                    }
+                }
+
+                pixel = (0xff000000 | red << 16 | green << 8 | blue);
+                pixels[i] = pixel;
+
+            }
+
+            counter = 0;
+            BufferedImage img = new BufferedImage(bi.getWidth(), bi.getHeight(), bi.getType());
+            for (int i = 0; i < bi.getWidth(); i++) {
+                for (int j = 0; j < bi.getHeight(); j++) {
+                    img.setRGB(i, j, pixels[counter]);
+                    counter++;
+                }
+            }
+
+            return new ImageIcon(img);
         } catch (Exception e) {
             return new ImageIcon();
         }
 
     }
-
- 
 }
