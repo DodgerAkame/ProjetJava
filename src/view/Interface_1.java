@@ -3,10 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface;
+package view;
 
+import core.Histogram;
+import core.Metadata;
 import core.Processor;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import org.w3c.dom.NamedNodeMap;
 
 /**
  *
@@ -31,7 +39,7 @@ public class Interface_1 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        dropPane1 = new Interface.DropPane();
+        dropPane1 = new view.DropPane();
         jButton1 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
 
@@ -127,7 +135,66 @@ public class Interface_1 extends javax.swing.JFrame {
             tampon.setA(dropPane1.getAa());
             tampon.setB(dropPane1.getBb());
         }
+        
+        Metadata data = new Metadata();
+        data.readAndDisplayMetadata(dropPane1.getAdresse2().get(0));
+        Map<String, NamedNodeMap> attributes = data.getAttributes();
+        StringBuffer sb = new StringBuffer();
+        Iterator it = attributes.keySet().iterator();
+        
+        while (it.hasNext()) {
+            String buffer = it.next().toString();
+            sb.append(buffer + " : ");
+            NamedNodeMap mapbuffer = attributes.get(buffer);
+            
+            for (int i = 0; i < mapbuffer.getLength(); i++) {
+                sb.append("      ");
+                sb.append(mapbuffer.item(i).getNodeValue());
+                sb.append("\n");
+            }
+        }
+        
+        inter.setJTextArea(sb.toString());
+        
+        Histogram histogram = new Histogram();
+        try {
+            histogram.histogram(dropPane1.getAdresse2().get(0));
+            histogram.redhistogram(dropPane1.getAdresse2().get(0));
+            histogram.greenhistogram(dropPane1.getAdresse2().get(0));
+            histogram.bluehistogram(dropPane1.getAdresse2().get(0));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        inter.setHistogram(histogram.getGlobal(), histogram.getRed(), histogram.getBlue(), histogram.getBlue());
+        
         inter.setVisible(true);
+        
+        inter.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {}
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) { }
+
+            @Override
+            public void windowIconified(WindowEvent e) {}
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {}
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+                inter.drawHistogram();
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {}
+        });
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -164,22 +231,22 @@ public class Interface_1 extends javax.swing.JFrame {
             }
         });
     }
-
+    
     public DropPane getDropPane1() {
         return dropPane1;
     }
-
+    
     public String getFonction() {
         return fonction;
     }
-
+    
     public Processor getProcess() {
         return process;
     }
     private core.Processor process;
     protected String fonction;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Interface.DropPane dropPane1;
+    private view.DropPane dropPane1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel2;

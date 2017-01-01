@@ -1,4 +1,4 @@
-package Interface;
+package view;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;

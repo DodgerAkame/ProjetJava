@@ -79,7 +79,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="Interface.DropPane" name="dropPane1">
+        <Container class="view.DropPane" name="dropPane1">
 
           <Layout>
             <DimensionLayout dim="0">
