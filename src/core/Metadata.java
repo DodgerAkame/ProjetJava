@@ -20,7 +20,15 @@ import org.w3c.dom.*;
 public class Metadata extends JPanel {
 
     private static Map<String, NamedNodeMap> attributes = new HashMap<String, NamedNodeMap>();
+    private String sb;
 
+    public String getSb() {
+        return sb;
+    }
+
+    public void setSb(String sb) {
+        this.sb = sb;
+    }
 //    public static void main(String[] args) {
 //        Metadata meta = new Metadata();
 //        meta.readAndDisplayMetadata("C:" + File.separatorChar + "Users" + File.separatorChar + "Dodger" + File.separatorChar + "Pictures" + File.separatorChar + "1476245780.nannerpudding_fewks.jpg");

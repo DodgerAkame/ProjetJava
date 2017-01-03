@@ -136,7 +136,7 @@ public class Interface_1 extends javax.swing.JFrame {
             tampon.setB(dropPane1.getBb());
         }
         
-        Metadata data = new Metadata();
+        Metadata data = inter.getMetadata();
         data.readAndDisplayMetadata(dropPane1.getAdresse2().get(0));
         Map<String, NamedNodeMap> attributes = data.getAttributes();
         StringBuffer sb = new StringBuffer();
@@ -153,8 +153,10 @@ public class Interface_1 extends javax.swing.JFrame {
                 sb.append("\n");
             }
         }
-        
-        inter.setJTextArea(sb.toString());
+        data.setSb(sb.toString());
+        System.out.println(sb.toString());
+        System.out.println(data.getSb());
+        //inter.setJTextArea(sb.toString());
         
         Histogram histogram = new Histogram();
         try {
