@@ -210,7 +210,7 @@ public class DropPane extends JPanel {
                     ArrayList<ImageIcon> image = list(img);
                     imagef = image;
                     ArrayList<Integer> calc = calcul(img.size());
-                    paint(calc.get(0), calc.get(1), image);  
+                    paint(calc.get(0), calc.get(1), image);
                     revalidate();
                 }
  
@@ -244,8 +244,8 @@ public class DropPane extends JPanel {
             int y = (int) Math.floor(Math.sqrt((double)img.size()));
 
                    for(int i =0; i< img.size(); i++){
-                       
-                        ImageIcon _icon = new ImageIcon(new ImageIcon(img.get(i)).getImage().getScaledInstance(1024/x, 1024/y, Image.SCALE_FAST));
+                        ImageIcon temp = new ImageIcon(img.get(i));
+                        ImageIcon _icon = new ImageIcon(temp.getImage().getScaledInstance((temp.getIconHeight())/x, (temp.getIconWidth())/y, Image.SCALE_FAST));//);
                        
                        //ImageIcon _image = new ImageIcon(img.get(i));
                        Size = Size + (_icon.getIconHeight()*_icon.getIconWidth()*3);
@@ -253,8 +253,8 @@ public class DropPane extends JPanel {
                        if(Size > 512000000){
                            //message.setText("Error Memory over 500Mo ");
                            int a = img.size()-image.size();
-                           ImageIcon icon = new ImageIcon(new ImageIcon(_icon.getImage()).getImage().getScaledInstance(1024/20, 1024/20, Image.SCALE_FAST));
-                           JOptionPane.showMessageDialog(message, "Image "+img.get(i)+" and the "+a+" files next to this image can't be load cause : \r\n"+""+"Memory over 500 Mo", "Dialog" , 0, icon);
+                            ImageIcon icon = new ImageIcon(temp.getImage().getScaledInstance((temp.getIconHeight())/x, (temp.getIconWidth())/y, Image.SCALE_FAST));//);
+                       JOptionPane.showMessageDialog(message, "Image "+img.get(i)+" and the "+a+" files next to this image can't be load cause : \r\n"+""+"Memory over 500 Mo", "Dialog" , 0, icon);
                            return image;
                        }else {
                        image.add(_icon);

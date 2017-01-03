@@ -102,6 +102,8 @@ public class Itest extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        prev = new javax.swing.JButton();
+        next = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -147,7 +149,7 @@ public class Itest extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jButton1)))
-                .addGap(0, 61, Short.MAX_VALUE))
+                .addGap(0, 71, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +265,7 @@ public class Itest extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,7 +318,7 @@ public class Itest extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(tampon9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addGap(49, 49, 49))
         );
@@ -372,7 +374,7 @@ public class Itest extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
                         .addComponent(W, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 54, Short.MAX_VALUE))
+                .addGap(0, 62, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -510,7 +512,7 @@ public class Itest extends javax.swing.JFrame {
                         .addGap(6, 6, 6))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(18, Short.MAX_VALUE))
+                        .addContainerGap(19, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -580,7 +582,7 @@ public class Itest extends javax.swing.JFrame {
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSlider4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16))
-                        .addContainerGap(13, Short.MAX_VALUE))))
+                        .addContainerGap(15, Short.MAX_VALUE))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -606,7 +608,7 @@ public class Itest extends javax.swing.JFrame {
         metadata1.setLayout(metadata1Layout);
         metadata1Layout.setHorizontalGroup(
             metadata1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 48, Short.MAX_VALUE)
+            .addGap(0, 17, Short.MAX_VALUE)
         );
         metadata1Layout.setVerticalGroup(
             metadata1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -641,43 +643,64 @@ public class Itest extends javax.swing.JFrame {
             }
         });
 
+        prev.setText("prev");
+        prev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevActionPerformed(evt);
+            }
+        });
+
+        next.setText("next");
+        next.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(276, 276, 276)
-                            .addComponent(jButton6)
-                            .addGap(51, 51, 51)
-                            .addComponent(metadata1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(prev)
+                                .addGap(143, 143, 143)
+                                .addComponent(metadata1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(next))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton4)
+                                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(17, 17, 17))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(280, 280, 280)
+                        .addComponent(jButton6)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 6, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(metadata1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4)))
-                .addContainerGap())
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(metadata1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prev)
+                    .addComponent(next))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6)
+                .addGap(16, 16, 16)
+                .addComponent(jButton4))
         );
 
         pack();
@@ -772,12 +795,50 @@ public class Itest extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         MetadataView metaV = new MetadataView();
         Metadata meta = metaV.getMetadata1();
-        meta = metadata1;
+        meta.readAndDisplayMetadata(tampon1.getAdr().get(position));
+        Map<String, NamedNodeMap> attributes = meta.getAttributes();
+        StringBuffer sb = new StringBuffer();
+        Iterator it = attributes.keySet().iterator();
+        
+        while (it.hasNext()) {
+            String buffer = it.next().toString();
+            sb.append(buffer + " : ");
+            NamedNodeMap mapbuffer = attributes.get(buffer);
+            
+            for (int i = 0; i < mapbuffer.getLength(); i++) {
+                sb.append("      ");
+                sb.append(mapbuffer.item(i).getNodeValue());
+                sb.append("\n");
+            }
+        }
+        meta.setSb(sb.toString());
         metaV.setJTextField1(meta.getSb());
         metaV.setVisible(true);
         
         
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void prevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevActionPerformed
+        position --;
+        
+        if (position <=0){
+            position = 0;}
+        drawHistogram(position);
+        System.out.println("pos : "+position);
+        
+        repaint();revalidate();
+    }//GEN-LAST:event_prevActionPerformed
+
+    private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
+        position ++;
+        if( position >= listHist.size()){
+            position=listHist.size()-1;
+        }
+        drawHistogram(position);
+        System.out.println("pos : "+position);
+        
+        repaint();revalidate();
+    }//GEN-LAST:event_nextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -869,6 +930,8 @@ public class Itest extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private core.Metadata metadata1;
+    private javax.swing.JButton next;
+    private javax.swing.JButton prev;
     private view.Tampon tampon1;
     private view.Tampon tampon2;
     private view.Tampon tampon3;
@@ -879,6 +942,16 @@ public class Itest extends javax.swing.JFrame {
     private view.Tampon tampon9;
     // End of variables declaration//GEN-END:variables
     private Histogram histogram;
+    private int position;
+    private ArrayList<Histogram> listHist;
+    
+    public ArrayList<Histogram> getListHist() {
+        return listHist;
+    }
+
+    public void setListHist(ArrayList<Histogram> listHist) {
+        this.listHist = listHist;
+    }
     public Metadata getMetadata(){
         return metadata1;
     }
@@ -928,8 +1001,14 @@ public class Itest extends javax.swing.JFrame {
         histogram.setGreen(green);
         histogram.setBlue(blue);
     }
-
-    public void drawHistogram() {
+     public void setHistogramB(Histogram histo) {
+        histogram.setGlobal(histo.getGlobal());
+        histogram.setRed(histo.getRed());
+        histogram.setGreen(histo.getGreen());
+        histogram.setBlue(histo.getBlue());
+    }
+    public void drawHistogram(int pos) {
+        Histogram histogramtemp = listHist.get(pos);
         Graphics g = jPanel10.getGraphics();
         Graphics gbuffer = g;
         Graphics2D g2d = (Graphics2D) gbuffer;
@@ -939,29 +1018,29 @@ public class Itest extends javax.swing.JFrame {
         for (int i = 0; i < 256; i++) {
 
             g.setColor(Color.black);
-            g.drawLine(i, 0, i, -(histogram.getGlobal())[i] / 200);
-            g.drawLine(i + 300, 0, i + 300, -(histogram.getRed())[i] / 200);
-            g.drawLine(i, 200, i, (-(histogram.getGreen())[i] / 200) + 200);
-            g.drawLine(i + 300, 200, i + 300, (-(histogram.getBlue())[i] / 200) + 200);
+            g.drawLine(i, 0, i, -(histogramtemp.getGlobal())[i] / 200);
+            g.drawLine(i + 300, 0, i + 300, -(histogramtemp.getRed())[i] / 200);
+            g.drawLine(i, 200, i, (-(histogramtemp.getGreen())[i] / 200) + 200);
+            g.drawLine(i + 300, 200, i + 300, (-(histogramtemp.getBlue())[i] / 200) + 200);
 
-            gp = new GradientPaint(30, 10, Color.white, histogram.getGlobal().length, 0, Color.black);
+            gp = new GradientPaint(30, 10, Color.white, histogramtemp.getGlobal().length, 0, Color.black);
             g2d.setPaint(gp);
-            g2d.fillRect(0, 10, histogram.getGlobal().length, 10);
+            g2d.fillRect(0, 10, histogramtemp.getGlobal().length, 10);
 
-            gp = new GradientPaint(300, 10, Color.white, histogram.getGlobal().length + 300, 0, Color.red);
+            gp = new GradientPaint(300, 10, Color.white, histogramtemp.getGlobal().length + 300, 0, Color.red);
             g2d.setPaint(gp);
-            g2d.fillRect(300, 10, histogram.getGlobal().length, 10);
+            g2d.fillRect(300, 10, histogramtemp.getGlobal().length, 10);
             
-              gp = new GradientPaint(30, 210, Color.white, histogram.getGlobal().length , 210, Color.green);
+              gp = new GradientPaint(30, 210, Color.white, histogramtemp.getGlobal().length , 210, Color.green);
             g2d.setPaint(gp);
-            g2d.fillRect(0, 210, histogram.getGlobal().length, 10);
+            g2d.fillRect(0, 210, histogramtemp.getGlobal().length, 10);
             
-              gp = new GradientPaint(300, 10, Color.white, histogram.getGlobal().length + 300, 0, Color.blue);
+              gp = new GradientPaint(300, 10, Color.white, histogramtemp.getGlobal().length + 300, 0, Color.blue);
             g2d.setPaint(gp);
-            g2d.fillRect(300, 210, histogram.getGlobal().length, 10);
+            g2d.fillRect(300, 210, histogramtemp.getGlobal().length, 10);
 
         }
-
+        
     }
 
     

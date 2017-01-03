@@ -154,20 +154,21 @@ public class Interface_1 extends javax.swing.JFrame {
             }
         }
         data.setSb(sb.toString());
-        System.out.println(sb.toString());
-        System.out.println(data.getSb());
         //inter.setJTextArea(sb.toString());
-        
+        ArrayList<Histogram> listHisto = new ArrayList<>();
         Histogram histogram = new Histogram();
         try {
-            histogram.histogram(dropPane1.getAdresse2().get(0));
-            histogram.redhistogram(dropPane1.getAdresse2().get(0));
-            histogram.greenhistogram(dropPane1.getAdresse2().get(0));
-            histogram.bluehistogram(dropPane1.getAdresse2().get(0));
+            for(int i =0; i<dropPane1.getAdresse2().size(); i++){
+            histogram.histogram(dropPane1.getAdresse2().get(i));
+            histogram.redhistogram(dropPane1.getAdresse2().get(i));
+            histogram.greenhistogram(dropPane1.getAdresse2().get(i));
+            histogram.bluehistogram(dropPane1.getAdresse2().get(i));
+            listHisto.add(histogram);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+        inter.setListHist(listHisto);
         inter.setHistogram(histogram.getGlobal(), histogram.getRed(), histogram.getBlue(), histogram.getBlue());
         
         inter.setVisible(true);
@@ -191,7 +192,7 @@ public class Interface_1 extends javax.swing.JFrame {
 
             @Override
             public void windowActivated(WindowEvent e) {
-                inter.drawHistogram();
+                inter.drawHistogram(0);
             }
 
             @Override
