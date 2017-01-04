@@ -102,8 +102,8 @@ public class Itest extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        prev = new javax.swing.JButton();
         next = new javax.swing.JButton();
+        prev = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -643,17 +643,17 @@ public class Itest extends javax.swing.JFrame {
             }
         });
 
-        prev.setText("prev");
-        prev.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prevActionPerformed(evt);
-            }
-        });
-
         next.setText("next");
         next.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextActionPerformed(evt);
+            }
+        });
+
+        prev.setText("prev");
+        prev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevActionPerformed(evt);
             }
         });
 
@@ -665,7 +665,7 @@ public class Itest extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(prev)
@@ -673,11 +673,9 @@ public class Itest extends javax.swing.JFrame {
                                 .addComponent(metadata1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(next))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton4)
-                                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton4)
+                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(17, 17, 17))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(280, 280, 280)
@@ -693,8 +691,8 @@ public class Itest extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(metadata1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prev)
-                    .addComponent(next))
+                    .addComponent(next)
+                    .addComponent(prev))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -826,7 +824,7 @@ public class Itest extends javax.swing.JFrame {
         drawHistogram(position);
         System.out.println("pos : "+position);
         
-        repaint();revalidate();
+       repaint();revalidate();
     }//GEN-LAST:event_prevActionPerformed
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
@@ -837,7 +835,9 @@ public class Itest extends javax.swing.JFrame {
         drawHistogram(position);
         System.out.println("pos : "+position);
         
-        repaint();revalidate();
+        //repaint();revalidate();
+        jPanel10.repaint();
+        jPanel10.revalidate();
     }//GEN-LAST:event_nextActionPerformed
 
     /**
@@ -1040,7 +1040,8 @@ public class Itest extends javax.swing.JFrame {
             g2d.fillRect(300, 210, histogramtemp.getGlobal().length, 10);
 
         }
-        
+        //repaint();
+        //revalidate();
     }
 
     

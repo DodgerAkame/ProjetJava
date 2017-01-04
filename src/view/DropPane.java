@@ -1,4 +1,5 @@
 package view;
+import com.sun.prism.j2d.J2DPipeline;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
@@ -22,6 +23,7 @@ import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +39,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.plaf.basic.BasicArrowButton;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -48,7 +51,7 @@ import javax.swing.SwingUtilities;
  *
  * @author Melh
  */
-public class DropPane extends JPanel {
+public class DropPane extends JPanel implements ActionListener{
 
         private DropTarget dropTarget;
         private DropTargetHandler dropTargetHandler;
@@ -57,7 +60,7 @@ public class DropPane extends JPanel {
         private boolean dragOver = false;
         private BufferedImage target;
         private JLabel message;  
-        private javax.swing.JButton bubu;
+ //       private javax.swing.JButton bubu;
         private static int aa = 0;
         private static int bb = 0;
         private static int sizeI = 0;
@@ -65,6 +68,7 @@ public class DropPane extends JPanel {
         private static ArrayList<String> adresse = new ArrayList<String>();
         private static ArrayList<String> adresse2 = new ArrayList<String>();
         private static ArrayList<ImageIcon> imagef = new ArrayList<ImageIcon>();
+        private ArrayList<JButton> listButton = new ArrayList<>();
 
     public static ArrayList<ImageIcon> getImagef() {
         return imagef;
@@ -88,16 +92,11 @@ public class DropPane extends JPanel {
      
      */
         public DropPane() {
-            bubu = new javax.swing.JButton();
             message = new JLabel();
 //            setLayout(new GridBagLayout());
 //            message.setFont(message.getFont().deriveFont(Font.BOLD, 30));
 //            add(message);
-            bubu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bubuActionPerformed(evt);
-            }
-        });
+
 
         }
 
@@ -121,11 +120,6 @@ public class DropPane extends JPanel {
             SwingUtilities.invokeLater(run);
         }
 
-            private void bubuActionPerformed(ActionEvent evt) {                                         
-//        adresse.remove(Integer.parseInt(bubu.getName()));
-//                importFiles(adresse);
-                System.out.println(bubu.getName());
-    }
             
              /**
      * getter from var adresse
@@ -245,7 +239,7 @@ public class DropPane extends JPanel {
 
                    for(int i =0; i< img.size(); i++){
                         ImageIcon temp = new ImageIcon(img.get(i));
-                        ImageIcon _icon = new ImageIcon(temp.getImage().getScaledInstance((temp.getIconHeight())/x, (temp.getIconWidth())/y, Image.SCALE_FAST));//);
+                        ImageIcon _icon = new ImageIcon(temp.getImage().getScaledInstance((temp.getIconHeight())/x, (temp.getIconWidth())/y, Image.SCALE_REPLICATE));//);
                        
                        //ImageIcon _image = new ImageIcon(img.get(i));
                        Size = Size + (_icon.getIconHeight()*_icon.getIconWidth()*3);
@@ -253,7 +247,7 @@ public class DropPane extends JPanel {
                        if(Size > 512000000){
                            //message.setText("Error Memory over 500Mo ");
                            int a = img.size()-image.size();
-                            ImageIcon icon = new ImageIcon(temp.getImage().getScaledInstance((temp.getIconHeight())/x, (temp.getIconWidth())/y, Image.SCALE_FAST));//);
+                            ImageIcon icon = new ImageIcon(temp.getImage().getScaledInstance((temp.getIconHeight())/x, (temp.getIconWidth())/y, Image.SCALE_AREA_AVERAGING));//);
                        JOptionPane.showMessageDialog(message, "Image "+img.get(i)+" and the "+a+" files next to this image can't be load cause : \r\n"+""+"Memory over 500 Mo", "Dialog" , 0, icon);
                            return image;
                        }else {
@@ -298,19 +292,49 @@ public class DropPane extends JPanel {
      * @param b
      */
           public void paint(int a, int b, ArrayList<ImageIcon> img) {
+              listButton.clear();
                 setLayout(new GridLayout(b,a,0,0));
-                int ie =0;
+                int ie = 0;
+                JButton bubu = new JButton();
+                for(int j =0; j<img.size(); j++){
+                    String S = "bubu"+j;
+                    JButton button = new JButton();
+                    button.setName(S);
+                    button.setText(Integer.toString(j));
+                    listButton.add(button);
+                }
                         for(ImageIcon i : img){ //JLabel toto = new JLabel(icon);
-                        bubu = new JButton(i);
+                        bubu = listButton.get(ie);
+                        bubu.setIcon(i);
                         Rectangle r = new Rectangle(1024/a, 1024/b);
                         bubu.setBounds(r);
-                        //bubu.setVisible(Boolean.FALSE);
-                        //toto.add(bubu);
+                        bubu.setText(Integer.toString(ie));
                         add(bubu);
-                        ie++;
+                        bubu.addActionListener(this);
+                        ie = ie+1;
                         } 
                   
               }
+        
+           public  void    actionPerformed(ActionEvent e)
+    {
+        JButton source=(JButton) e.getSource();
+        int i = Integer.parseInt(source.getText());
+        String Adr = adresse.get(i);
+        ArrayList<String> adre = new ArrayList<>();
+        adre.add(Adr);
+        ArrayList<ImageIcon> img = new ArrayList<>();
+        ImageIcon image = new ImageIcon(Adr);
+        img.add(image);
+        UniqueImageView uiv = new UniqueImageView();
+        Tampon t = uiv.getTampon1();
+        t.setAdr(adre);
+            t.setImg(img);
+            t.setA(1);
+            t.setB(1);
+        System.out.println(source.getText());
+        uiv.setVisible(true);
+    }
 
 
               
