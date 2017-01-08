@@ -342,7 +342,6 @@ public class DropPane extends JPanel implements ActionListener{
                 t.add(inter.getTampon1());
                 t.add(inter.getTampon2());
                 t.add(inter.getTampon3());
-                t.add(inter.getTampon4());
                 t.add(inter.getTampon5());
                 t.add(inter.getTampon6());
                 t.add(inter.getTampon7());

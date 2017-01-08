@@ -711,8 +711,6 @@ public class Itest extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         tampon9.setName("doDFT");
         tampon9.eva();
-        tampon4.setName("doDFT");
-        tampon4.eva();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jSlider2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider2MouseReleased
@@ -815,18 +813,15 @@ public class Itest extends javax.swing.JFrame {
                 tampon = tampon3;
                 break;
             case 3:
-                tampon = tampon4;
-                break;
-            case 4:
                 tampon = tampon5;
                 break;
-            case 5:
+            case 4:
                 tampon = tampon6;
                 break;
-            case 6:
+            case 5:
                 tampon = tampon7;
                 break;
-            case 7:
+            case 6:
                 tampon = tampon9;
                 break;
             default:
@@ -985,9 +980,6 @@ public class Itest extends javax.swing.JFrame {
         return tampon3;
     }
 
-    public Tampon getTampon4() {
-        return tampon4;
-    }
 
     public Tampon getTampon5() {
         return tampon5;
