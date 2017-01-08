@@ -1,5 +1,7 @@
 package view;
 import com.sun.prism.j2d.J2DPipeline;
+import core.Histogram;
+import core.Metadata;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
@@ -24,13 +26,19 @@ import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.time.Clock;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.TooManyListenersException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,6 +48,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.plaf.basic.BasicArrowButton;
+import org.w3c.dom.NamedNodeMap;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -318,22 +327,95 @@ public class DropPane extends JPanel implements ActionListener{
         
            public  void    actionPerformed(ActionEvent e)
     {
-        JButton source=(JButton) e.getSource();
-        int i = Integer.parseInt(source.getText());
-        String Adr = adresse.get(i);
-        ArrayList<String> adre = new ArrayList<>();
-        adre.add(Adr);
-        ArrayList<ImageIcon> img = new ArrayList<>();
-        ImageIcon image = new ImageIcon(Adr);
-        img.add(image);
-        UniqueImageView uiv = new UniqueImageView();
-        Tampon t = uiv.getTampon1();
-        t.setAdr(adre);
-            t.setImg(img);
-            t.setA(1);
-            t.setB(1);
-        System.out.println(source.getText());
-        uiv.setVisible(true);
+            try {
+                JButton source=(JButton) e.getSource();
+                int i = Integer.parseInt(source.getText());
+                String Adr = adresse.get(i);
+                ArrayList<String> adre = new ArrayList<>();
+                adre.add(Adr);
+                ArrayList<ImageIcon> img = new ArrayList<>();
+                ImageIcon image = new ImageIcon(Adr);
+                img.add(image);
+                //UniqueImageView uiv = new UniqueImageView();
+                Itest inter = new Itest();
+                ArrayList<Tampon> t = new ArrayList<>();
+                t.add(inter.getTampon1());
+                t.add(inter.getTampon2());
+                t.add(inter.getTampon3());
+                t.add(inter.getTampon4());
+                t.add(inter.getTampon5());
+                t.add(inter.getTampon6());
+                t.add(inter.getTampon7());
+                t.add(inter.getTampon9());
+                for (Tampon tampon : t) {
+                    tampon.setAdr(adre);
+                    tampon.setImg(img);
+                    tampon.setA(1);
+                    tampon.setB(1);
+                }
+                
+                Metadata data = inter.getMetadata();
+                data.readAndDisplayMetadata(Adr);
+                Map<String, NamedNodeMap> attributes = data.getAttributes();
+                StringBuffer sb = new StringBuffer();
+                Iterator it = attributes.keySet().iterator();
+                
+                while (it.hasNext()) {
+                    String buffer = it.next().toString();
+                    sb.append(buffer + " : ");
+                    NamedNodeMap mapbuffer = attributes.get(buffer);
+                    
+                    for (int ii = 0; ii < mapbuffer.getLength(); ii++) {
+                        sb.append("      ");
+                        sb.append(mapbuffer.item(ii).getNodeValue());
+                        sb.append("\n");
+                    }
+                }
+                data.setSb(sb.toString());
+                //inter.setJTextArea(sb.toString());
+                ArrayList<Histogram> listHisto = new ArrayList<>();
+                Histogram histogram = new Histogram();
+                
+                histogram.histogram(Adr);
+                histogram.redhistogram(Adr);
+                histogram.greenhistogram(Adr);
+                histogram.bluehistogram(Adr);
+                listHisto.add(histogram);
+                
+                inter.setListHist(listHisto);
+                inter.setHistogram(histogram.getGlobal(), histogram.getRed(), histogram.getBlue(), histogram.getBlue());
+                inter.getPrev().setVisible(false);
+                inter.getNext().setVisible(false);
+                inter.getImageName().setVisible(false);
+                inter.setVisible(true);
+                
+                inter.addWindowListener(new WindowListener() {
+                    @Override
+                    public void windowOpened(WindowEvent e) {}
+                    
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                    }
+                    
+                    @Override
+                    public void windowClosed(WindowEvent e) { }
+                    
+                    @Override
+                    public void windowIconified(WindowEvent e) {}
+                    
+                    @Override
+                    public void windowDeiconified(WindowEvent e) {}
+                    
+                    @Override
+                    public void windowActivated(WindowEvent e) {
+                        inter.drawHistogram(0);
+                    }
+                    
+                    @Override
+                    public void windowDeactivated(WindowEvent e) {}
+                }); } catch (IOException ex) {
+                Logger.getLogger(DropPane.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 
 

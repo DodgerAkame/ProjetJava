@@ -17,6 +17,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GradientPaint;
 import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
@@ -104,6 +106,7 @@ public class Itest extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         next = new javax.swing.JButton();
         prev = new javax.swing.JButton();
+        imagename = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -657,6 +660,8 @@ public class Itest extends javax.swing.JFrame {
             }
         });
 
+        imagename.setText("Image1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -666,11 +671,13 @@ public class Itest extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(prev)
                                 .addGap(143, 143, 143)
                                 .addComponent(metadata1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(58, 58, 58)
+                                .addComponent(imagename, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(next))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -691,7 +698,9 @@ public class Itest extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(metadata1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(next)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(next)
+                        .addComponent(imagename))
                     .addComponent(prev))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -823,7 +832,8 @@ public class Itest extends javax.swing.JFrame {
             position = 0;}
         drawHistogram(position);
         System.out.println("pos : "+position);
-        
+        int pos = position + 1;
+        imagename.setText("Image"+pos);
        repaint();revalidate();
     }//GEN-LAST:event_prevActionPerformed
 
@@ -834,6 +844,8 @@ public class Itest extends javax.swing.JFrame {
         }
         drawHistogram(position);
         System.out.println("pos : "+position);
+        int pos = position + 1;
+        imagename.setText("Image"+pos);
         
         //repaint();revalidate();
         jPanel10.repaint();
@@ -888,6 +900,7 @@ public class Itest extends javax.swing.JFrame {
     private javax.swing.JSpinner c6;
     private javax.swing.JSpinner c7;
     private javax.swing.JSpinner c8;
+    private javax.swing.JLabel imagename;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -948,7 +961,15 @@ public class Itest extends javax.swing.JFrame {
     public ArrayList<Histogram> getListHist() {
         return listHist;
     }
-
+    public JButton getPrev(){
+        return prev;
+    }
+    public JButton getNext(){
+        return next;
+    }
+    public JLabel getImageName(){
+        return imagename;
+    }
     public void setListHist(ArrayList<Histogram> listHist) {
         this.listHist = listHist;
     }
