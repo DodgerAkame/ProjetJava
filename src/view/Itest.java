@@ -925,7 +925,7 @@ public class Itest extends javax.swing.JFrame {
             Graphics g = bi.createGraphics();
             img.paintIcon(null, g, 0, 0);
             g.dispose();
-            File output = new File(url + File.separatorChar + "result" + File.separatorChar + counter);
+            File output = new File(url + File.separatorChar + "result" + File.separatorChar + counter+".png");
             try {
                 ImageIO.write(bi, "png", output);
             } catch (IOException ex) {
