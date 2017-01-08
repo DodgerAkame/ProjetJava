@@ -1097,9 +1097,8 @@ public class Itest extends javax.swing.JFrame {
     }
 
     public void drawHistogram(int pos) {
-
         Histogram histogramtemp = listHist.get(pos);
-        setHistogramB(histogram);
+        //setHistogramB(histogram);
         Graphics g = jPanel10.getGraphics();
         //super.paint(g);
         paint(g);

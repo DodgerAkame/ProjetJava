@@ -135,18 +135,18 @@ public class Interface_1 extends javax.swing.JFrame {
             tampon.setA(dropPane1.getAa());
             tampon.setB(dropPane1.getBb());
         }
-        
+
         Metadata data = inter.getMetadata();
         data.readAndDisplayMetadata(dropPane1.getAdresse2().get(0));
         Map<String, NamedNodeMap> attributes = data.getAttributes();
         StringBuffer sb = new StringBuffer();
         Iterator it = attributes.keySet().iterator();
-        
+
         while (it.hasNext()) {
             String buffer = it.next().toString();
             sb.append(buffer + " : ");
             NamedNodeMap mapbuffer = attributes.get(buffer);
-            
+
             for (int i = 0; i < mapbuffer.getLength(); i++) {
                 sb.append("      ");
                 sb.append(mapbuffer.item(i).getNodeValue());
@@ -155,40 +155,47 @@ public class Interface_1 extends javax.swing.JFrame {
         }
         data.setSb(sb.toString());
         //inter.setJTextArea(sb.toString());
-        ArrayList<Histogram> listHisto = new ArrayList<>();
-        Histogram histogram = new Histogram();
+        ArrayList<Histogram> listHisto = new ArrayList<Histogram>();
+
         try {
-            for(int i =0; i<dropPane1.getAdresse2().size(); i++){
-            histogram.histogram(dropPane1.getAdresse2().get(i));
-            histogram.redhistogram(dropPane1.getAdresse2().get(i));
-            histogram.greenhistogram(dropPane1.getAdresse2().get(i));
-            histogram.bluehistogram(dropPane1.getAdresse2().get(i));
-            listHisto.add(histogram);
+            for (int i = 0; i < dropPane1.getAdresse2().size(); i++) {
+                Histogram histogram = new Histogram();
+                histogram.histogram(dropPane1.getAdresse2().get(i));
+                histogram.redhistogram(dropPane1.getAdresse2().get(i));
+                histogram.greenhistogram(dropPane1.getAdresse2().get(i));
+                histogram.bluehistogram(dropPane1.getAdresse2().get(i));
+                listHisto.add(histogram);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         inter.setListHist(listHisto);
-        inter.setHistogram(histogram.getGlobal(), histogram.getRed(), histogram.getBlue(), histogram.getBlue());
-        
+        //inter.setHistogram(histogram.getGlobal(), histogram.getRed(), histogram.getBlue(), histogram.getBlue());
+
+        System.out.println(inter.getListHist().size());
+
         inter.setVisible(true);
-        
+
         inter.addWindowListener(new WindowListener() {
             @Override
-            public void windowOpened(WindowEvent e) {}
+            public void windowOpened(WindowEvent e) {
+            }
 
             @Override
             public void windowClosing(WindowEvent e) {
             }
 
             @Override
-            public void windowClosed(WindowEvent e) { }
+            public void windowClosed(WindowEvent e) {
+            }
 
             @Override
-            public void windowIconified(WindowEvent e) {}
+            public void windowIconified(WindowEvent e) {
+            }
 
             @Override
-            public void windowDeiconified(WindowEvent e) {}
+            public void windowDeiconified(WindowEvent e) {
+            }
 
             @Override
             public void windowActivated(WindowEvent e) {
@@ -196,7 +203,8 @@ public class Interface_1 extends javax.swing.JFrame {
             }
 
             @Override
-            public void windowDeactivated(WindowEvent e) {}
+            public void windowDeactivated(WindowEvent e) {
+            }
         });
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -234,15 +242,15 @@ public class Interface_1 extends javax.swing.JFrame {
             }
         });
     }
-    
+
     public DropPane getDropPane1() {
         return dropPane1;
     }
-    
+
     public String getFonction() {
         return fonction;
     }
-    
+
     public Processor getProcess() {
         return process;
     }
