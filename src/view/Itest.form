@@ -965,13 +965,11 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prevActionPerformed"/>
       </Events>
     </Component>
-
     <Component class="javax.swing.JLabel" name="imagename">
       <Properties>
         <Property name="text" type="java.lang.String" value="Image1"/>
       </Properties>
-	  </Component>
-
+    </Component>
     <Component class="javax.swing.JButton" name="jButton7">
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
@@ -979,7 +977,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
       </Events>
-
     </Component>
   </SubComponents>
 </Form>

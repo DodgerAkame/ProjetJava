@@ -865,7 +865,7 @@ public class Itest extends javax.swing.JFrame {
         drawHistogram(position);
         int pos = position + 1;
         imagename.setText("Image"+pos);
-       repaint();revalidate();
+       
     }//GEN-LAST:event_prevActionPerformed
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
@@ -877,9 +877,7 @@ public class Itest extends javax.swing.JFrame {
         int pos = position + 1;
         imagename.setText("Image"+pos);
         
-        //repaint();revalidate();
-        jPanel10.repaint();
-        jPanel10.revalidate();
+       
     }//GEN-LAST:event_nextActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
