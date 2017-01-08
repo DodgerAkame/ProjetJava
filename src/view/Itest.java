@@ -17,8 +17,20 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GradientPaint;
 import java.awt.Color;
+<<<<<<< HEAD
 import javax.swing.JButton;
 import javax.swing.JLabel;
+=======
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+>>>>>>> origin/test_interface_control
 import javax.swing.JTextField;
 
 /**
@@ -26,6 +38,7 @@ import javax.swing.JTextField;
  * @author Melh
  */
 public class Itest extends javax.swing.JFrame {
+
     /**
      * Creates new form Itest
      */
@@ -106,7 +119,11 @@ public class Itest extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         next = new javax.swing.JButton();
         prev = new javax.swing.JButton();
+<<<<<<< HEAD
         imagename = new javax.swing.JLabel();
+=======
+        jButton7 = new javax.swing.JButton();
+>>>>>>> origin/test_interface_control
 
         jTextField1.setText("jTextField1");
 
@@ -152,7 +169,7 @@ public class Itest extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jButton1)))
-                .addGap(0, 71, Short.MAX_VALUE))
+                .addGap(0, 76, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,7 +285,7 @@ public class Itest extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,7 +338,7 @@ public class Itest extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(tampon9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addGap(49, 49, 49))
         );
@@ -356,6 +373,10 @@ public class Itest extends javax.swing.JFrame {
             }
         });
 
+        H.setValue(800);
+
+        W.setValue(600);
+
         jLabel5.setText("Height :");
 
         jLabel6.setText("Width :");
@@ -368,16 +389,22 @@ public class Itest extends javax.swing.JFrame {
                 .addComponent(tampon4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton5)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(H, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton5)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(W, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 62, Short.MAX_VALUE))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(22, 22, 22)))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(H, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                            .addComponent(W))
+                        .addGap(38, 38, 38))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -515,7 +542,7 @@ public class Itest extends javax.swing.JFrame {
                         .addGap(6, 6, 6))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(19, Short.MAX_VALUE))
+                        .addContainerGap(14, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -585,7 +612,7 @@ public class Itest extends javax.swing.JFrame {
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSlider4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16))
-                        .addContainerGap(15, Short.MAX_VALUE))))
+                        .addContainerGap(14, Short.MAX_VALUE))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -660,7 +687,16 @@ public class Itest extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         imagename.setText("Image1");
+=======
+        jButton7.setText("Save");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+>>>>>>> origin/test_interface_control
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -681,7 +717,10 @@ public class Itest extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(next))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton4)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jButton7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButton4))
                                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(17, 17, 17))
                     .addGroup(layout.createSequentialGroup()
@@ -707,7 +746,9 @@ public class Itest extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton6)
                 .addGap(16, 16, 16)
-                .addComponent(jButton4))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(jButton7)))
         );
 
         pack();
@@ -806,12 +847,12 @@ public class Itest extends javax.swing.JFrame {
         Map<String, NamedNodeMap> attributes = meta.getAttributes();
         StringBuffer sb = new StringBuffer();
         Iterator it = attributes.keySet().iterator();
-        
+
         while (it.hasNext()) {
             String buffer = it.next().toString();
             sb.append(buffer + " : ");
             NamedNodeMap mapbuffer = attributes.get(buffer);
-            
+
             for (int i = 0; i < mapbuffer.getLength(); i++) {
                 sb.append("      ");
                 sb.append(mapbuffer.item(i).getNodeValue());
@@ -821,28 +862,35 @@ public class Itest extends javax.swing.JFrame {
         meta.setSb(sb.toString());
         metaV.setJTextField1(meta.getSb());
         metaV.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void prevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevActionPerformed
-        position --;
-        
-        if (position <=0){
-            position = 0;}
+        position--;
+
+        if (position <= 0) {
+            position = 0;
+        }
         drawHistogram(position);
+<<<<<<< HEAD
         System.out.println("pos : "+position);
         int pos = position + 1;
         imagename.setText("Image"+pos);
        repaint();revalidate();
+=======
+        System.out.println("pos : " + position);
+
+>>>>>>> origin/test_interface_control
     }//GEN-LAST:event_prevActionPerformed
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
-        position ++;
-        if( position >= listHist.size()){
-            position=listHist.size()-1;
+        position++;
+        if (position >= listHist.size()) {
+            position = listHist.size() - 1;
         }
         drawHistogram(position);
+<<<<<<< HEAD
         System.out.println("pos : "+position);
         int pos = position + 1;
         imagename.setText("Image"+pos);
@@ -850,7 +898,65 @@ public class Itest extends javax.swing.JFrame {
         //repaint();revalidate();
         jPanel10.repaint();
         jPanel10.revalidate();
+=======
+        System.out.println("pos : " + position);
+>>>>>>> origin/test_interface_control
     }//GEN-LAST:event_nextActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        JFileChooser jfc = new JFileChooser();
+        jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        jfc.setDialogType(JFileChooser.SAVE_DIALOG);
+        jfc.showSaveDialog(this);
+        String url = jfc.getSelectedFile().getPath();
+        System.out.println(url);
+        new File(url + File.separatorChar + "result").mkdir();
+        int counter = 0;
+        Tampon tampon;
+        switch (jTabbedPane1.getSelectedIndex()) {
+            case 0:
+                tampon = tampon1;
+                break;
+            case 1:
+                tampon = tampon2;
+                break;
+            case 2:
+                tampon = tampon3;
+                break;
+            case 3:
+                tampon = tampon4;
+                break;
+            case 4:
+                tampon = tampon5;
+                break;
+            case 5:
+                tampon = tampon6;
+                break;
+            case 6:
+                tampon = tampon7;
+                break;
+            case 7:
+                tampon = tampon9;
+                break;
+            default:
+                tampon = tampon1;
+                break;
+
+        }
+        for (ImageIcon img : tampon.getImg()) {
+            BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_RGB);
+            Graphics g = bi.createGraphics();
+            img.paintIcon(null, g, 0, 0);
+            g.dispose();
+            File output = new File(url + File.separatorChar + "result" + File.separatorChar + counter);
+            try {
+                ImageIO.write(bi, "png", output);
+            } catch (IOException ex) {
+                Logger.getLogger(Itest.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            counter++;
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -907,6 +1013,7 @@ public class Itest extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -957,7 +1064,7 @@ public class Itest extends javax.swing.JFrame {
     private Histogram histogram;
     private int position;
     private ArrayList<Histogram> listHist;
-    
+
     public ArrayList<Histogram> getListHist() {
         return listHist;
     }
@@ -973,12 +1080,15 @@ public class Itest extends javax.swing.JFrame {
     public void setListHist(ArrayList<Histogram> listHist) {
         this.listHist = listHist;
     }
-    public Metadata getMetadata(){
+
+    public Metadata getMetadata() {
         return metadata1;
     }
-    public void setMetadata(Metadata m){
-        metadata1=m;
+
+    public void setMetadata(Metadata m) {
+        metadata1 = m;
     }
+
     public Tampon getTampon1() {
         return tampon1;
     }
@@ -1015,34 +1125,40 @@ public class Itest extends javax.swing.JFrame {
         this.tampon1 = tampon1;
     }
 
-
     public void setHistogram(int[] global, int[] red, int[] blue, int[] green) {
         histogram.setGlobal(global);
         histogram.setRed(red);
         histogram.setGreen(green);
         histogram.setBlue(blue);
     }
-     public void setHistogramB(Histogram histo) {
+
+    public void setHistogramB(Histogram histo) {
         histogram.setGlobal(histo.getGlobal());
         histogram.setRed(histo.getRed());
         histogram.setGreen(histo.getGreen());
         histogram.setBlue(histo.getBlue());
     }
+
     public void drawHistogram(int pos) {
+
         Histogram histogramtemp = listHist.get(pos);
+        setHistogramB(histogram);
         Graphics g = jPanel10.getGraphics();
-        Graphics gbuffer = g;
-        Graphics2D g2d = (Graphics2D) gbuffer;
+        //super.paint(g);
+        paint(g);
+        Graphics2D g2d = (Graphics2D) g;
+
+        g.clearRect(0, 0, (int) jPanel10.getSize().getWidth(), (int) jPanel10.getSize().getHeight());
         g.translate(20, 100);
         GradientPaint gp;
 
         for (int i = 0; i < 256; i++) {
 
             g.setColor(Color.black);
-            g.drawLine(i, 0, i, -(histogramtemp.getGlobal())[i] / 200);
-            g.drawLine(i + 300, 0, i + 300, -(histogramtemp.getRed())[i] / 200);
-            g.drawLine(i, 200, i, (-(histogramtemp.getGreen())[i] / 200) + 200);
-            g.drawLine(i + 300, 200, i + 300, (-(histogramtemp.getBlue())[i] / 200) + 200);
+            g.drawLine(i, 0, i, -(histogramtemp.getGlobal())[i] / 300);
+            g.drawLine(i + 300, 0, i + 300, -(histogramtemp.getRed())[i] / 300);
+            g.drawLine(i, 200, i, (-(histogramtemp.getGreen())[i] / 300) + 200);
+            g.drawLine(i + 300, 200, i + 300, (-(histogramtemp.getBlue())[i] / 300) + 200);
 
             gp = new GradientPaint(30, 10, Color.white, histogramtemp.getGlobal().length, 0, Color.black);
             g2d.setPaint(gp);
@@ -1051,19 +1167,19 @@ public class Itest extends javax.swing.JFrame {
             gp = new GradientPaint(300, 10, Color.white, histogramtemp.getGlobal().length + 300, 0, Color.red);
             g2d.setPaint(gp);
             g2d.fillRect(300, 10, histogramtemp.getGlobal().length, 10);
-            
-              gp = new GradientPaint(30, 210, Color.white, histogramtemp.getGlobal().length , 210, Color.green);
+
+            gp = new GradientPaint(30, 210, Color.white, histogramtemp.getGlobal().length, 210, Color.green);
             g2d.setPaint(gp);
             g2d.fillRect(0, 210, histogramtemp.getGlobal().length, 10);
-            
-              gp = new GradientPaint(300, 10, Color.white, histogramtemp.getGlobal().length + 300, 0, Color.blue);
+
+            gp = new GradientPaint(300, 10, Color.white, histogramtemp.getGlobal().length + 300, 0, Color.blue);
             g2d.setPaint(gp);
             g2d.fillRect(300, 210, histogramtemp.getGlobal().length, 10);
 
         }
-        //repaint();
-        //revalidate();
+
+        g.dispose();
+
     }
 
-    
 }

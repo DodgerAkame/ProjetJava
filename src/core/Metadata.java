@@ -70,7 +70,6 @@ public class Metadata extends JPanel {
                 String[] names = metadata.getMetadataFormatNames();
                 int length = names.length;
                 for (int i = 0; i < length; i++) {
-                    System.out.println("Format name: " + names[i]);
                     displayMetadata(metadata.getAsTree(names[i]));
                 }
             }

@@ -220,6 +220,7 @@ public class Processor {
             return new ImageIcon(result);
 
         } catch (Exception e) {
+            e.printStackTrace();
             return new ImageIcon();
         }
     }
