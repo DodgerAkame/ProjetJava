@@ -17,10 +17,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GradientPaint;
 import java.awt.Color;
-<<<<<<< HEAD
 import javax.swing.JButton;
 import javax.swing.JLabel;
-=======
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
@@ -30,7 +28,6 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
->>>>>>> origin/test_interface_control
 import javax.swing.JTextField;
 
 /**
@@ -119,11 +116,8 @@ public class Itest extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         next = new javax.swing.JButton();
         prev = new javax.swing.JButton();
-<<<<<<< HEAD
         imagename = new javax.swing.JLabel();
-=======
         jButton7 = new javax.swing.JButton();
->>>>>>> origin/test_interface_control
 
         jTextField1.setText("jTextField1");
 
@@ -687,17 +681,13 @@ public class Itest extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< HEAD
         imagename.setText("Image1");
-=======
         jButton7.setText("Save");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
->>>>>>> origin/test_interface_control
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -873,15 +863,9 @@ public class Itest extends javax.swing.JFrame {
             position = 0;
         }
         drawHistogram(position);
-<<<<<<< HEAD
-        System.out.println("pos : "+position);
         int pos = position + 1;
         imagename.setText("Image"+pos);
        repaint();revalidate();
-=======
-        System.out.println("pos : " + position);
-
->>>>>>> origin/test_interface_control
     }//GEN-LAST:event_prevActionPerformed
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
@@ -890,17 +874,12 @@ public class Itest extends javax.swing.JFrame {
             position = listHist.size() - 1;
         }
         drawHistogram(position);
-<<<<<<< HEAD
-        System.out.println("pos : "+position);
         int pos = position + 1;
         imagename.setText("Image"+pos);
         
         //repaint();revalidate();
         jPanel10.repaint();
         jPanel10.revalidate();
-=======
-        System.out.println("pos : " + position);
->>>>>>> origin/test_interface_control
     }//GEN-LAST:event_nextActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
