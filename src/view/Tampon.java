@@ -71,9 +71,7 @@ public class Tampon extends JPanel{
     }
     
    public void eva(){
-        //Processor p1 = new Processor();
         try {
-            //img.clear();
             img = p1.evaluate(a, b, adr, name, color, conv, bin, w, h, p, step, contrast);
         } catch (IOException ex) {
             Logger.getLogger(Tampon.class.getName()).log(Level.SEVERE, null, ex);

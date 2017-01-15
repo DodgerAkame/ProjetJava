@@ -6,7 +6,6 @@
 package core;
 
 import fftprocess.FFT;
-import fftprocess.InverseFFT;
 import fftprocess.TwoDArray;
 import ij.ImagePlus;
 import ij.plugin.ChannelSplitter;
@@ -35,7 +34,7 @@ public class Processor {
     public Processor() {
     }
 
-    public ArrayList<ImageIcon> evaluate(int a, int b, ArrayList<String> adr, String name, String color, int conv[], int bin, int w, int h, int p, float stepbri, float stepcon) throws IOException {//int b, int c
+    public ArrayList<ImageIcon> evaluate(int a, int b, ArrayList<String> adr, String name, String color, int conv[], int bin, int w, int h, int p, float stepbri, float stepcon) throws IOException {
         ArrayList<ImageIcon> image2 = new ArrayList<>();
         for (int j = 0; j < adr.size(); j++) {
 
@@ -52,9 +51,6 @@ public class Processor {
                     break;
                 case "doDFT":
                     _icon = doDFT(adr.get(j));
-                    break;
-                case "doIDFT":
-                    _icon = doIDFT(adr.get(j), w, h);
                     break;
                 case "posterize":
                     _icon = posterize(adr.get(j), p);
@@ -186,45 +182,6 @@ public class Processor {
             return new ImageIcon();
         }
     }
-
-    //TODO Problème ici
-    public ImageIcon doIDFT(String path, int w, int h) {
-        try {
-
-            BufferedImage bi = ImageIO.read(new File(path));
-            int[] pixels = new int[bi.getHeight() * bi.getWidth()];
-            int counter = 0;
-            for (int i = 0; i < bi.getWidth(); i++) {
-                for (int j = 0; j < bi.getHeight(); j++) {
-                    pixels[counter] = bi.getRGB(i, j);
-                    counter++;
-                }
-            }
-
-            TwoDArray tda = new TwoDArray(pixels, w, h);
-            InverseFFT ifft = new InverseFFT();
-            TwoDArray output = new TwoDArray();
-            output = ifft.transform(tda);
-            int[] outputInt = new int[bi.getHeight() * bi.getWidth()];
-            outputInt = ifft.getPixels(output);
-
-            BufferedImage result = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-            counter = 0;
-            for (int i = 0; i < result.getWidth(); i++) {
-                for (int j = 0; j < result.getHeight(); j++) {
-                    result.setRGB(i, j, outputInt[counter]);
-                    counter++;
-                }
-            }
-
-            return new ImageIcon(result);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ImageIcon();
-        }
-    }
-//TODO slider not a button like bubu, bubu the button and not bubu the slider.
 
     public ImageIcon contrast(String path, float step) {
         try {

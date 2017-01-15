@@ -29,23 +29,7 @@ public class Metadata extends JPanel {
     public void setSb(String sb) {
         this.sb = sb;
     }
-//    public static void main(String[] args) {
-//        Metadata meta = new Metadata();
-//        meta.readAndDisplayMetadata("C:" + File.separatorChar + "Users" + File.separatorChar + "Dodger" + File.separatorChar + "Pictures" + File.separatorChar + "1476245780.nannerpudding_fewks.jpg");
-//
-//        Iterator it = attributes.keySet().iterator();
-//
-//        while (it.hasNext()) {
-//            String buffer = it.next().toString();
-//            NamedNodeMap mapbuffer = attributes.get(buffer);
-//            System.out.println(buffer + " : ");
-//            for (int i = 0; i < mapbuffer.getLength(); i++) {
-//                System.out.print("      ");
-//                System.out.println(mapbuffer.item(i).getNodeValue());
-//            }
-//        }
-//
-//    }
+
     public static Map<String, NamedNodeMap> getAttributes() {
         return attributes;
     }
