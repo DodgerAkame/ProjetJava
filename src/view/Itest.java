@@ -813,16 +813,16 @@ public class Itest extends javax.swing.JFrame {
                 tampon = tampon3;
                 break;
             case 3:
-                tampon = tampon5;
+                tampon = tampon9;
                 break;
             case 4:
-                tampon = tampon6;
+                tampon = tampon5;
                 break;
             case 5:
                 tampon = tampon7;
                 break;
             case 6:
-                tampon = tampon9;
+                tampon = tampon6;
                 break;
             default:
                 tampon = tampon1;
