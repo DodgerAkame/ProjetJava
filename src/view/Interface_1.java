@@ -14,6 +14,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 import org.w3c.dom.NamedNodeMap;
 
 /**
@@ -120,6 +122,7 @@ public class Interface_1 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Itest inter = new Itest();
+        inter.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ArrayList<Tampon> t = new ArrayList<>();
         t.add(inter.getTampon1());
         t.add(inter.getTampon2());
