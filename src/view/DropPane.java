@@ -44,10 +44,12 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 import javax.swing.plaf.basic.BasicArrowButton;
 import org.w3c.dom.NamedNodeMap;
 
@@ -343,6 +345,7 @@ public class DropPane extends JPanel implements ActionListener {
             img.add(image);
 
             Itest inter = new Itest();
+            inter.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             ArrayList<Tampon> t = new ArrayList<>();
             t.add(inter.getTampon1());
             t.add(inter.getTampon2());
